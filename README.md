@@ -1,3 +1,3 @@
 # Real-Estate-Project
 
-This is the Real Estate Project for Class COSC 581-01. 
+This is the Real Estate Project for class COSC 581-01. 
