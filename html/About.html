@@ -2,16 +2,38 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="style.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
+<link rel="stylesheet" type="text/css" href="../style/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+<script type="text/javascript" src="../javascript/main.js" charset="utf-8"></script>
 </head>
 
 <body class="body">
 
-<div class="header">
-  <h1>Real Estate</h1>
-  <p>Project</p>
+<header>
+  <div>
+    <md-card card-media="background-color: #999999;"> 
+      <md-card-title  layout="row" layout-align="end center">
+        <img src="../yourLogoHere.png" style="width: 5%; padding-left: 5%; padding-right: 5%; margin-left: 6%; margin-right: 7%;">
+        <a href="tel: 248-390-0738" style="text-align: center; padding: 5%; font-size: 36px; margin-left: 7%; margin-right: 7%;">(248) 390-0738</a>
+        <button onclick="unhide(this, 'contractor')" style="padding: 5%; height: 10%; margin-left: 7%; margin-right: 7%;" >Contact Us</button>
+      </md-card-title>
+    </md-card>
+  </div>
+  <div>
+    <md-card id="contractor" name="contractor" card-media="background-color: #999999;" class="hidden"> 
+      <md-card-title>
+        <form name="contactContract">
+          <input type="text" ng-model="name" placeholder="Name" class="hiddenForm"><br><br>
+          <input type="email" ng-model="email" placeholder="Email" class="hiddenForm"><br><br>
+          <input type="tel" ng-model="phone" placeholder="Phone Number" class="hiddenForm"><br><br>
+          <input type="text" ng-model="serviceOffered" placeholder="Service Offered" class="hiddenForm">
+        </form>
+      </md-card-title>
+    </md-card>
+  </div>
+</header>
 
-</div>
 <body>
 
 <div id="navbar" class="sticky">
