@@ -1,10 +1,10 @@
 <?php
     $servername = "localhost";
-    $username = "root";
-    $password = "";
+    $username = "realestate";
+    $password = "realestate";
 
     // Create connection
-    $conn = mysqli_connect($servername, $username, $password);
+    $conn = mysqli_connect($servername, $username, $password, 'ANDREWSDREAMLLC');
 
     // Check connection
     if (!$conn)

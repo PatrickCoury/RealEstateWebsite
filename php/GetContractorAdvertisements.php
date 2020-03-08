@@ -1,10 +1,11 @@
 <?php
-    
+
     // Get SQL Connection object
+    include 'ConnectToSQL.php';
     $conn = $GLOBALS['SQL_CONN'];       
 
     // Call query on SQL server
-    $query = 'select * from andrewsdreamllc.contractor;'
+    $query = 'select * from ANDREWSDREAMLLC.contractor;';
     $result = mysqli_query($conn, $query);
     
     // If we have results 
