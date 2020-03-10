@@ -4,7 +4,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
-<body>
 
   <body class="body">
 
@@ -24,10 +23,63 @@
   <a href="Contractors.html">CONTRACTORS</a>
 </div>
 
-<div class="content" style=" padding-top: 60px;">
-  <h3>Content will be displayed here</h3>
-  <p>This is sample text. This test content is for displaying the sticky navigation bar. Actual content will be coming soon here</p>
-</div>
+<table id="t02">
+    <tbody>
+        <tr>
+            <td class="top15"></td>
+            
+            </tr>
+        <tr>
+            <td class="top15">
+            <td class="top50">
+                <h2>We Are Andrew's Dream</h2>
+                <br>
+                <iframe width="100%" height="400px" src="https://www.youtube.com/embed/u0lqcBgUid8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+                <p>
+                    My name is Steven Ehrman, I run a real estate business. This business has a website. This website has lots of sample text. Look at all this
+                    sample text. Whoa! Whoa!
+                    Bee Movie Script - Dialogue Transcript
+
+
+                    According to all known laws
+                    of aviation,
+
+
+                    there is no way a bee
+                    should be able to fly.
+
+
+                    Its wings are too small to get
+                    its fat little body off the ground.
+
+
+
+                </p>
+            </td>
+
+            <td class="top35" rowspan="1">
+                <md-card card-media="background-color:Black;">
+                    <md-card-title layout="row" layout-align="end center" background-color:"Black">
+                        <a href="tel: 248-390-0738" class="phone">(248) 390-0738</a>
+                        <button onclick="unhide(this, 'contractor')" class="contact">Contact Us</button>
+                    </md-card-title>
+                </md-card>
+                <md-card id="contractor" name="contractor" card-media="background-color: #999999;" class="hidden">
+                    <md-card-title>
+                        <form name="contactContract">
+                            <input type="text" ng-model="name" placeholder="Name" class="hiddenForm"><br><br>
+                            <input type="email" ng-model="email" placeholder="Email" class="hiddenForm"><br><br>
+                            <input type="tel" ng-model="phone" placeholder="Phone Number" class="hiddenForm"><br><br>
+                            <input type="text" ng-model="serviceOffered" placeholder="Service Offered" class="hiddenForm">
+                        </form>
+                    </md-card-title>
+                </md-card>
+            </td>
+
+        </tr>
+        </tbody>
+    </table>
 
 
 

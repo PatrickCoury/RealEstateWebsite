@@ -101,7 +101,7 @@ body {
 	height: 200px; 
 	margin-left: 7%; 
 	margin-right: 7%;
-		overflow: hidden;
+	overflow: hidden;
     white-space: nowrap;
 }
 
@@ -110,4 +110,25 @@ body {
   height: 100%;
   background: rgba(255,255,165,.99);
   margin: auto;
+}
+td.top50 {
+    border-collapse: collapse;
+    width: 50%;
+    text-align: left;
+}
+table#t01 {
+    width: 100%;
+    height: 100%;
+    margin-top:5%;
+    border-collapse: collapse;
+}
+td.top15 {
+    border-collapse: collapse;
+    width: 15%;
+    text-align: left;
+}
+td.top35 {
+    border-collapse: collapse;
+    width: 35%;
+    text-align: left;
 }
