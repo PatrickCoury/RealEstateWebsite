@@ -68,6 +68,30 @@ LOCK TABLES `contractor` WRITE;
 UNLOCK TABLES;
 
 --
+-- Table structure for table `home_page`
+--
+
+DROP TABLE IF EXISTS `home_page`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `home_page` (
+  `HOME_PARAGRAPH_TEXT` text NOT NULL,
+  `HOME_IMAGE` blob,
+  `HOME_VIDEO_URL` text
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `home_page`
+--
+
+LOCK TABLES `home_page` WRITE;
+/*!40000 ALTER TABLE `home_page` DISABLE KEYS */;
+INSERT INTO `home_page` VALUES ('dogbreath',NULL,'youtube.com/watch?v=oMUzKMt48Bg');
+/*!40000 ALTER TABLE `home_page` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
 -- Table structure for table `property`
 --
 
@@ -191,4 +215,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-15 12:47:29
+-- Dump completed on 2020-03-15 13:44:34
