@@ -5,7 +5,7 @@
     $conn = $GLOBALS['SQL_CONN'];       
 
     // Call query on SQL server
-    $query = 'select * from ANDREWSDREAMLLC.about_us;';
+    $query = 'SELECT * FROM ANDREWSDREAMLLC.about_us;';
     $result = mysqli_query($conn, $query);
     
     // If we have results 
