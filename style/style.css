@@ -60,17 +60,17 @@ body {
 
 .hidden{
   display: none;
-  width: 25%; 
-  float: right; 
-  margin-right: 5%; 
+  width: 25%;
+  float: right;
+  margin-right: 5%;
   padding-left: 5%;
 }
 
 .unhidden{
   display: block;
-  width: 25%; 
-  float: right; 
-  margin-right: 5%; 
+  width: 25%;
+  float: right;
+  margin-right: 5%;
   padding-left: 5%;
 }
 
@@ -88,22 +88,30 @@ body {
 	display:inline-block
 }
 .phone{
-	text-align: center; 
-	padding-top:100px;
-	padding-left: 7%; 
-	padding-right: 5%; 
-	font-size: 36px; 
+  display:inline-block;
+  background-color: #800000;
+  color:gold;
+  border-radius:2em;
+  box-sizing: border-box;
+	text-align: center;
+	padding-top:10px;
+	padding-left: 7%;
+	padding-right: 5%;
+	font-size: 36px;
 	margin-right: 7%;
 	overflow: hidden;
-    white-space: nowrap;
+  white-space: nowrap;
 }
+
 .contact{
-	padding: 5%; 
-	height: 200px; 
-	margin-left: 7%; 
+  background: #000000;
+  color: gold;
+	padding: 5%;
+	height: 200px;
+	margin-left: 7%;
 	margin-right: 7%;
 	overflow: hidden;
-    white-space: nowrap;
+  white-space: nowrap;
 }
 
 .content{
@@ -163,7 +171,7 @@ td.top35 {
 }
 
 .line{
-   
+
     background: #800000;
     border: 2px solid #000000;
     border-radius: 10px;
@@ -191,4 +199,38 @@ td.top35 {
   width: 250px;
   margin-top: 30px;
   outline: none;
+}
+
+.footerColumn1{
+    color: gold;
+    padding-top: 40px;
+    padding-left: 40px;
+    padding-right: 20px;
+}
+
+.footerColumn2{
+    color: gold;
+    padding-top: 40px;
+    padding-left: 20px;
+    padding-right: 40px;
+}
+
+.footerTextCopy {
+  color:#000000;
+  font-size: 18px;
+  padding-left: 40px;
+  padding-top: 40px;
+  padding-bottom: 40px;
+}
+
+
+footer {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    font-size: 20px;
+    font-family: sans-serif;
+    padding-left: 10px;
+    background-color: #800000;
+    font-size: 45%;
+    border: 4px solid #000000;
 }
