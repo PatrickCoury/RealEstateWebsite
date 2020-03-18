@@ -142,6 +142,24 @@ td.top35 {
     text-align: left;
 }
 
+th.contactBack {
+  border-radius: 25px 25px 0px 0px;
+  border: 3px solid #800000;
+  background: black;
+  font-size:25px;
+  color: gold;
+  font-family:Times New Roman;
+  padding: 20px;
+}
+
+td.contactInfoBack {
+  border-radius: 0px 0px 25px 25px;
+  border: 3px solid #800000;
+  font-size:20px;
+  color: black;
+  font-family:Times New Roman;
+  padding: 20px;
+}
 
 .input{
     padding: 10px;
