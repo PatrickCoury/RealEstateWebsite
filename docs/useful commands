@@ -1,0 +1,3 @@
+sudo mysql -u realestate -p  ANDREWSDREAMLLC < RealestateDump.sql
+
+sudo cp -r ~/vboxshare/ /var/www/html/

@@ -2,16 +2,20 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
 <link rel="stylesheet" type="text/css" href="../style/style.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
+<script type="text/javascript" src="../javascript/main.js" charset="utf-8"></script>
+
 </head>
 
-  <body class="body">
+<body class="body">
 
-  <header>
-	<div class="header">
-		<a class="active" href="Home.html"><img src="../logo.png" class="logo"></a>
-		<h1 class="headerText">Andrew's Dream LLC.</h1>
-		</div>
+<header>
+    <div class="header">
+        <a class="active" href="Home.html"><img src="../logo.png" class="logo"></a>
+        <h1 class="headerText">Andrew's Dream LLC.</h1>
+    </div>
 </header>
 
 <div id="navbar" class="sticky">
@@ -34,27 +38,12 @@
             <td class="top50">
                 <h2>We Are Andrew's Dream</h2>
                 <br>
-                <iframe width="100%" height="400px" src="https://www.youtube.com/embed/u0lqcBgUid8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                <div id="homeVideo">
+                    
+                </div>
 
-                <p>
-                    My name is Steven Ehrman, I run a real estate business. This business has a website. This website has lots of sample text. Look at all this
-                    sample text. Whoa! Whoa!
-                    Bee Movie Script - Dialogue Transcript
-
-
-                    According to all known laws
-                    of aviation,
-
-
-                    there is no way a bee
-                    should be able to fly.
-
-
-                    Its wings are too small to get
-                    its fat little body off the ground.
-
-
-
+                <p id="homeDescription">
+                    
                 </p>
             </td>
 
@@ -96,6 +85,6 @@
         <div class="footerTextCopy">©2020 Dhwani Jacob Patrick Ramona Tim </div>
     </footer>
 
-
+<script>loadHomePage()</script>
 </body>
 </html>

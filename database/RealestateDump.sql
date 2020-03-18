@@ -87,7 +87,7 @@ CREATE TABLE `home_page` (
 
 LOCK TABLES `home_page` WRITE;
 /*!40000 ALTER TABLE `home_page` DISABLE KEYS */;
-INSERT INTO `home_page` VALUES ('dogbreath',NULL,'youtube.com/watch?v=oMUzKMt48Bg');
+INSERT INTO `home_page` VALUES ('Steve Ehrman''s description placeholder', NULL,'<iframe width="560" height="315" src="https://www.youtube.com/embed/NpEaa2P7qZI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
 /*!40000 ALTER TABLE `home_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
