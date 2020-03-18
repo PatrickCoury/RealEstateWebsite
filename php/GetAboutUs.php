@@ -15,7 +15,7 @@
         $row = mysqli_fetch_assoc($result);
         $about_us= array();   
         $about_us["DESCRIPTION"] = $row["DESCRIPTION"];
-        $about_us["ADDRESS"] = $row["COMPANY_ADDRESSl"];
+        $about_us["ADDRESS"] = $row["COMPANY_ADDRESS"];
         $about_us["CONTACT_NUMBER"] = $row["COMPANY_CONTACT_NUMBER"];
         $about_us["FAX_NUMBER"] = $row["COMPANY_FAX_NUMBER"];
         $about_us["EMAIL_ADDRESS"] = $row["COMPANY_EMAIL"];
