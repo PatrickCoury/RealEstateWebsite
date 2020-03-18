@@ -17,6 +17,6 @@ function getAbout()
 
 function populatePage(des, add, con, fax, ema, fac)
 {
-    var abt = documnet.getElementById('aboutDATA');
+    var abt = document.getElementById('aboutDATA');
     abt.createTextNode(des);
 }
