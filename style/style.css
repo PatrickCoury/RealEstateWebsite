@@ -249,3 +249,31 @@ footer {
     font-size: 45%;
     border: 4px solid #000000;
 }
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+  display: inline-block;
+  font-family:Times New Roman;
+  padding: 10px;
+  font-size:20px;
+  color: gold;
+  background-color: #800000;
+  border: 3px solid #000000;
+  border-radius: 10px;
+  width: 200px;
+  margin-top: 30px;
+  outline: none;
+}
+
+.inputfile:focus + label,
+.inputfile + label:hover {
+    background-color: black;
+}
