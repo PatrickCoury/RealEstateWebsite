@@ -192,10 +192,10 @@
         <td valign="top"><input type="text" id="propertyPrice" class="input" tabindex="9">
         </td>
         <td></td>
-        <td class="text" valign="top">
-            Extra Note
+        <td class="text" valign="top" >
+            Note:
         </td>
-        <td><textarea rows="5" class="input" style="resize: none;overflow-y: auto;" tabindex="22"></textarea>
+        <td><textarea rows="5" class="input" style="resize: none;overflow-y: auto;" tabindex="22" id="propertyNote"></textarea>
         </td>
        </tr>
        <tr>
@@ -206,11 +206,18 @@
         </td>
        </tr>
        <tr>
-        <td colspan="5" align="center"><button type="button" id="clear" class="button" style="width: 120px;" tabindex="25">Clear</button> 
+        <td colspan="5" align="center">
+            <button type="button" id="clear" class="button" style="width: 120px;" tabindex="25">Clear</button> 
             <button type="button" id="add" class="button" style="width: 120px;" tabindex="24">Add</button>
             <button type="button" id="addMore" class="button" style="width: 120px;" tabindex="23">Add More</button>
         </td>
        </tr>
+       <tr>
+        <td colspan="7" align="center"> 
+            <button type="button" id="setProperty" onclick="setProperty()" class="button" tabindex="23">Set Property</button>
+        </td>
+       </tr>
+
      </table>
     
 </div>

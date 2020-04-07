@@ -45,6 +45,108 @@ function loadHomePage()
     xmlhttp.send();
 }
 
+
+
+function newProperty()
+{
+
+    // Populates the AddRentalAdmin page with a new property which has a unique ID 
+    // Calls a backend script which puts a new property into the SQL database then returns it back
+    // Populate corresponding html input boxes with the default values
+
+}
+
+function setProperty()
+{
+
+    var payload = {};
+    payload.PROPERTY_KEY = null;
+    
+    payload.PROPERTY_NAME = propertyTitle.value;
+    payload.PROPERTY_PRICE = propertyPrice.value;
+    payload.PROPERTY_TYPE = propertyType.value;
+    payload.PROPERTY_STREET_ADDRESS1 = propertyAddress1.value;
+    payload.PROPERTY_STREET_ADDRESS2 = propertyAddress2.value;
+    payload.PROPERTY_CITY = propertyCity.value;
+    payload.PROPERTY_STATE = propertyState.value;
+    payload.PROPERTY_COUNTRY = propertyCountry.value;
+    payload.PROPERTY_ZIP = propertyZip.value;
+    payload.PROPERTY_AVAILABLE = null; 
+    payload.PROPERTY_DATE = null; // Set in backend
+
+    payload.PROPERTY_SQUARE_FEET = propertySqrFt.value;
+    payload.PROPERTY_BED = propertyBed.value;
+    payload.PROPERTY_BATH = propertyBath.value;
+    payload.PROPERTY_PARKING = propertyParking.value;
+    payload.PROPERTY_PET_FRIENDLY = propertyPetYes.value;
+    payload.PROPERTY_ELECTRICITY = propertyElectricityYes.value;
+    payload.PROPERTY_WATER_SEWAGE_TRASH =  propertyWSTYes.value;
+    payload.PROPERTY_LEASE_MIN = propertyMinLease.value;
+    payload.PROPERTY_LEASE_MAX = propertyMaxLease.value;
+    payload.PROPERTY_NOTE = propertyNote.value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '../php/InsertProperty', true);
+
+    //Send the proper header information along with the request
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function() { // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) 
+        {
+            // Request finished. Do processing here.
+            // Success message
+        }   
+    }
+    jpayload = JSON.encode(payload);
+    xhr.send(jpayload);
+}
+
+
+
+
+function addImagesClicked()
+{
+    // PROPERTY_MEDIA table 
+    // PROPERTY_KEY
+    // PRPERTY_IMAGE
+    // PRIMARY_VIDEO
+
+
+    var inputElement = document.getElementById('files');
+    var c = document.getElementById('count');
+
+    var payload = [];
+    inputElement.addEventListener("change", handleFiles, false);
+    function handleFiles() 
+    {
+        for (var i = 0; i < inputElement.files.length; i++)
+        {
+            payload.push(inputElement.files[i])
+        }
+        c.innerHTML = payload.length.toString() + " Images Selected";
+    }
+
+    
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '../php/', true);
+
+    //Send the proper header information along with the request
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function() { // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) 
+        {
+            // Request finished. Do processing here.
+            // Success message
+        }   
+    }
+    jpayload = JSON.encode(payload);
+    xhr.send(jpayload);
+      
+}
+
 //var loadFile = function(event) {
   //  var output = document.getElementById('image');
     //output.src = URL.createObjectURL(event.target.files[0]);
@@ -52,19 +154,3 @@ function loadHomePage()
       //URL.revokeObjectURL(output.src) // free memory
     //}
 //};
-
-window.onload=function(){
-const inputElement = document.getElementById('files');
-var fileSRC = [];
-var c = document.getElementById('count');
-inputElement.addEventListener("change", handleFiles, false);
-function handleFiles() {
-  for (var i = 0; i < inputElement.files.length; i++){
-    fileSRC.push(inputElement.files[i])
-    console.log(i.toString());
-    console.log(fileSRC);
-  }
-  console.log(fileSRC.length.toString());
-  c.innerHTML = fileSRC.length.toString() + " Images Selected";
-}
-}
