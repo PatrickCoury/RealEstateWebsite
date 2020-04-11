@@ -22,7 +22,7 @@ function loadHomePage()
         if (this.readyState == 4 && this.status == 200) 
         {
             var obj = JSON.parse(this.responseText);
-            document.getElementById("homeDescription").innerHTML = obj.PARAGRAPH_TEXT;
+            
             document.getElementById("homeVideo").innerHTML = obj.VIDEO_URL.trim();
         }
     };
@@ -35,6 +35,7 @@ function loadHomePage()
         if (this.readyState == 4 && this.status == 200) 
         {
             var obj = JSON.parse(this.responseText);
+            document.getElementById("homeDescription").innerHTML = obj.DESCRIPTION;
             document.getElementById("add").innerHTML = obj.ADDRESS;
             document.getElementById("contact").innerHTML = obj.CONTACT_NUMBER;
             document.getElementById("email").innerHTML = obj.EMAIL_ADDRESS;
@@ -45,6 +46,77 @@ function loadHomePage()
     xmlhttp.send();
 }
 
+
+
+function addImagesClicked()
+{
+    // PROPERTY_MEDIA table 
+    // PROPERTY_KEY
+    // PRPERTY_IMAGE
+    // PRIMARY_VIDEO
+
+
+    var inputElement = document.getElementById('files');
+    var c = document.getElementById('count');
+
+    var payload = [];
+    inputElement.addEventListener("change", handleFiles, false);
+    function handleFiles() 
+    {
+        for (var i = 0; i < inputElement.files.length; i++)
+        {
+            payload.push(inputElement.files[i])
+        }
+        c.innerHTML = payload.length.toString() + " Images Selected";
+    }
+
+    
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '../php/', true);
+
+    //Send the proper header information along with the request
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function() { // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) 
+        {
+            // Request finished. Do processing here.
+            // Success message
+        }   
+    }
+    jpayload = JSON.encode(payload);
+    xhr.send(jpayload);
+      
+}
+function setHome()
+{
+
+    var payload = {};
+
+    payload.DESCRIPTION = document.getElementById('description').value;
+    payload.COMPANY_ADDRESS = document.getElementById('address').value;
+    payload.COMPANY_CONTACT_NUMBER = document.getElementById('contactNumber').value;
+    payload.COMPANY_FAX_NUMBER = document.getElementById('fax').value;
+    payload.COMPANY_EMAIL_ADDRESS = document.getElementById('email').value;
+    payload.COMPANY_FACEBOOK = document.getElementById('facebook').value;
+    console.log(payload.DESCRIPTION);
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '../php/UpdateAboutUs.php', true);
+
+    //Send the proper header information along with the request
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function() { // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) 
+        {
+            alert("Home page successfully updated")
+        }   
+    }
+    jpayload = 'DESCRIPTION='+payload.DESCRIPTION+'&COMPANY_ADDRESS='+payload.COMPANY_ADDRESS+'&COMPANY_CONTACT_NUMBER='+payload.COMPANY_CONTACT_NUMBER+'&COMPANY_FAX_NUMBER='+payload.COMPANY_FAX_NUMBER+'&COMPANY_EMAIL_ADDRESS='+payload.COMPANY_EMAIL_ADDRESS+'&COMPANY_FACEBOOK='+payload.COMPANY_FACEBOOK;
+    //jpayload = 'DESCRIPTION='+document.getElementById('description').value+'&COMPANY_ADDRESS='+document.getElementById('address').value+'&COMPANY_CONTACT_NUMBER='+document.getElementById('contactNumber').value+'&COMPANY_FAX_NUMBER='+document.getElementById('fax').value+'&COMPANY_EMAIL_ADDRESS='+document.getElementById('email').value+'&COMPANY_FACEBOOK='+document.getElementById('facebook').value
+    xhr.send(jpayload);
+}
 
 
 function newProperty()
@@ -94,8 +166,7 @@ function setProperty()
     xhr.onreadystatechange = function() { // Call a function when the state changes.
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) 
         {
-            // Request finished. Do processing here.
-            // Success message
+            alert("Property successfully added")
         }   
     }
     jpayload = JSON.encode(payload);

@@ -3,6 +3,7 @@
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" type="text/css" href="../style/style.css">
+<script type = "text/javascript" src="../javascript/main.js"></script>
 </head>
 
   <body class="body">
@@ -24,12 +25,12 @@
 </div>
 
 <div style=" padding-top: 60px;">
-  <form action="../php/UpdateAboutUs.php"  method="post">
+  <form>
       <h3 style="text-align:center;font-size:40px;color:Black;" class="text">Update Home Page Information</h3>
       <table align="center" class="table">
       <tr>
         <td valign="top" class="text">Description: </td>
-        <td><textarea rows="20" cols="70" class="input" style="resize: none;overflow-y: auto;" tabindex="1"></textarea></td>
+        <td><textarea rows="20" id ="description" cols="70" class="input" style="resize: none;overflow-y: auto;" tabindex="1"></textarea></td>
       </tr>
       <tr>
         <td class="text">Address: </td>
@@ -37,24 +38,27 @@
       </tr>
       <tr>
         <td class="text">Contact Number: </td>
-        <td><input type="tel" id="contactNumber" class="input" placeholder="123-456-7890" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" tabindex="3"></td>
+        <td><input type="tel" id="contactNumber" class="input" placeholder="1234567890" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" tabindex="3"></td>
       </tr>
       <tr>
         <td class="text">Fax: </td>
-        <td><input type="te;" id="fax" class="input" placeholder="123-45-6789" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" tabindex="4"></td>
+        <td><input type="te;" id="fax" class="input" placeholder="123456789" pattern="[0-9]{3}[0-9]{3}[0-9]{4}" tabindex="4"></td>
       </tr>
       <tr>
         <td class="text">Email: </td>
         <td><input type="email" id="email" class="input" tabindex="5"></td>
       </tr>
       <tr>
+        <td class="text">Facebook: </td>
+        <td><input type="text" id="facebook" class="input" tabindex="5"></td>
+      </tr>
+      <tr>
         <td></td>
-        <td align="center"><button type="button" id="clear" class="button" tabindex="7">Clear</button> 
-        <input type="submit" id="update" class="button" tabindex="6" value="Update"></button></td>
+        <td align="center"><button type="button" id="clear" class="button" tabindex="7" onClick="location.href='HomeAdmin.html'">Clear</button> 
+        <input type="button" id="update" class="button" tabindex="6" value="Update" onClick="setHome()"></button></td>
       </tr>
     </table>
   </form>
 </div>
-
 </body>
 </html>
