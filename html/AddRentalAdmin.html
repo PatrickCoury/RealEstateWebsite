@@ -1,31 +1,36 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.12/angular-material.min.css">
-<link rel="stylesheet" type="text/css" href="../style/style.css">
-<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.9/angular.min.js"></script>
-<script type="text/javascript" src="../javascript/main.js" charset="utf-8"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../style/style.css">
 </head>
-
-  <body class="body">
-
-<header>
-	<div class="header">
-		<a class="active" href="HomeAdmin.html"><img src="../logo.png" class="logo"></a>
-		<h1 class="headerText">Andrew's Dream LLC.</h1>
+<body>
+	<header>
+		<div class="header">
+			<a class="active" href="HomeAdmin.html"><img src="../logo.png" class="logo"></a>
+			<h1 class="headerText">Andrew's Dream LLC.</h1>
 		</div>
-</header>
-
-<div id="navbar" class="sticky">
-  <a href="HomeAdmin.html"> HOME</a>
-  <a href="Sale.html">SELL A HOUSE</a>
-  <a href="Buy.html">BUY A HOUSE</a>
-  <a class="active" href="RentalAdmin.html">TURNKEY RENTAL</a>
-  <a href="Lenders.html">LENDERS</a>
-  <a href="Contractors.html">CONTRACTORS</a>
-</div>
-
+	</header>
+	<div id="navbar" class="sticky">
+	  <a href="HomeAdmin.html"> HOME</a>
+	  <a href="Sale.html">SELL A HOUSE</a>
+	  <a href="Buy.html">BUY A HOUSE</a>
+	  <a class="active" href="RentalAdmin.html">TURNKEY RENTAL</a>
+	  <a href="Lenders.html">LENDERS</a>
+	  <a href="Contractors.html">CONTRACTORS</a>
+	</div>
+	<div class="container">
+	  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+		<div class="carousel-inner" id="myCarouselData">
+		  <div class="item active">
+		  </div>
+		</div>
+	  </div>
+	</div>
 <div style=" padding-top: 60px;">
     <h3 style="text-align:center;font-size:40px;color:Black;" class="text">Add New Rental Property</h3>
     <table align="center" width="97%" >
@@ -46,7 +51,7 @@
             Property Title
         </td>
         <td style="padding-top: 20px;"><input type="text" id="propertyTitle" class="input" tabindex="1">
-        </td> 
+        </td>
 
         <td style="padding-top: 20px;"></td>
         <td class="text" style="padding-top: 20px;">
@@ -59,13 +64,13 @@
         <td class="text">
             Property Type
         </td>
-        <td><input type="text" list="type" name="type" id="propertyType" class="input" tabindex="2"> 
+        <td><input type="text" list="type" name="type" id="propertyType" class="input" tabindex="2">
                 <datalist id="type">
                     <option value="Apartment">
                     <option value="Condo">
                     <option value="House">
                     <option value="Ranch">
-                </datalist> 
+                </datalist>
         </td>
         <td></td>
         <td class="text">
@@ -86,7 +91,7 @@
             Street Address 1
         </td>
         <td><input type="text" id="propertyAddress1" class="input" tabindex="3">
-        </td> 
+        </td>
         <td></td>
         <td class="text">
             Total Bath
@@ -106,7 +111,7 @@
             Street Address 2
         </td>
         <td><input type="text" id="propertyAddress2" class="input" tabindex="4">
-        </td>  
+        </td>
         <td></td>
         <td class="text">
             Parking
@@ -142,7 +147,7 @@
             State
         </td>
         <td><input type="text" id="propertyState" class="input" tabindex="6">
-        </td> 
+        </td>
         <td></td>
         <td class="text">
             Electricity
@@ -159,7 +164,7 @@
             Country
         </td>
         <td><input type="text" id="propertyCountry" class="input" value="USA" tabindex="7">
-        </td> 
+        </td>
         <td></td>
         <td class="text">
             Water, Sewage, Trash
@@ -176,12 +181,12 @@
             Zip
         </td>
         <td><input type="text" id="propertyZip" class="input" tabindex="8">
-        </td>  
+        </td>
         <td></td>
         <td class="text">
             Lease Period
         </td>
-        <td><input type="text" id="propertyMinLease" class="input" style="width:44%;" tabindex="20" placeholder="Min"> 
+        <td><input type="text" id="propertyMinLease" class="input" style="width:44%;" tabindex="20" placeholder="Min">
         <input type="text" id="propertyMaxLease" class="input" style="width:44%;" tabindex="21" placeholder="Max">
         </td>
        </tr>
@@ -199,7 +204,7 @@
         </td>
        </tr>
        <tr>
-        <td colspan="5" align="center"> 
+        <td colspan="5" align="center">
             <input type="file" name="file" id="files" accept="image/*" class = "inputfile" multiple/>
             <label for="files">Choose Images</label>
             <p id="count" class="title"></p>
@@ -207,20 +212,77 @@
        </tr>
        <tr>
         <td colspan="5" align="center">
-            <button type="button" id="clear" class="button" style="width: 120px;" tabindex="25">Clear</button> 
-            <button type="button" id="add" class="button" style="width: 120px;" tabindex="24">Add</button>
+            <button type="button" id="clear" class="button" style="width: 120px;" tabindex="25">Clear</button>
+            <button type="button" id="add" class="button" style="width: 120px;" tabindex="24" onclick="AddHouse()">Add</button>
             <button type="button" id="addMore" class="button" style="width: 120px;" tabindex="23">Add More</button>
         </td>
        </tr>
        <tr>
-        <td colspan="7" align="center"> 
+        <td colspan="7" align="center">
             <button type="button" id="setProperty" onclick="setProperty()" class="button" tabindex="23">Set Property</button>
         </td>
        </tr>
 
      </table>
-    
+
 </div>
 
 </body>
+
+	 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	 <script>
+		 var houseInfo = { "images":[]};
+		 $(document).ready(function(){
+			$('input[type="file"]').change(function(e){
+				  houseInfo.images = [];
+				  if (this.files && this.files[0]) {
+					for(var i =0; i < this.files.length; i++ ){
+						var reader = new FileReader();
+						reader.onload = function (e) {
+						    $('<div class="item"><img style="width:100%; height:350px;" src="'+e.target.result+'"><div class="carousel-caption"></div>   </div>').appendTo('.carousel-inner');
+
+							houseInfo.images.push(e.target.result);
+						}
+
+						reader.readAsDataURL(this.files[i]);
+					}
+
+					$('.item').first().addClass('active');
+				}
+			});
+		});
+
+
+
+		function AddHouse(){
+			houseInfo.propertyTitle = document.getElementById("propertyTitle").value;
+			houseInfo.propertyType = document.getElementById("propertyType").value;
+			houseInfo.propertyAddress1 = document.getElementById("propertyAddress1").value;
+			houseInfo.propertyAddress2 = document.getElementById("propertyAddress2").value;
+			houseInfo.propertySqrFt = document.getElementById("propertySqrFt").value;
+			houseInfo.propertyBed = document.getElementById("propertyBed").value;
+			houseInfo.propertyBath = document.getElementById("propertyBath").value;
+			houseInfo.propertyParking = document.getElementById("propertyParking").value;
+			houseInfo.propertyCity = document.getElementById("propertyCity").value;
+			houseInfo.propertyState = document.getElementById("propertyState").value;
+			houseInfo.propertyCountry = document.getElementById("propertyCountry").value;
+			houseInfo.propertyZip = document.getElementById("propertyZip").value;
+			houseInfo.propertyPrice = document.getElementById("propertyPrice").value;
+
+			var list = [];
+			if(JSON.parse(localStorage.getItem('adminHouses'))!=null)
+			{
+				var houses = JSON.parse(localStorage.getItem('adminHouses'));
+				houses.push(houseInfo);
+				localStorage.setItem('adminHouses', JSON.stringify(houses));
+			}
+			else
+			{
+				list.push(houseInfo);
+				localStorage.setItem('adminHouses', JSON.stringify(list));
+			}
+		}
+
+	</script>
+
 </html>

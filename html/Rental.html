@@ -1,38 +1,122 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" type="text/css" href="../style/style.css">
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="../style/style.css">
+  <style>
+  .carousel-inner > .item > img,
+  .carousel-inner > .item > a > img {
+    width: 70%;
+    margin: auto;
+  }
+  </style>
 </head>
-
-  <body class="body">
-
-<header>
-	<div class="header">
-		<a class="active" href="Home.html"><img src="../logo.png" class="logo"></a>
-		<h1 class="headerText">Andrew's Dream LLC.</h1>
+	<body>
+		<header>
+			<div class="header">
+				<a class="active" href="HomeAdmin.html"><img src="../logo.png" class="logo"></a>
+				<h1 class="headerText">Andrew's Dream LLC.</h1>
+			</div>
+		</header>
+		<div id="navbar" class="sticky">
+		  <a href="HomeAdmin.html"> HOME</a>
+		  <a href="Sale.html">SELL A HOUSE</a>
+		  <a href="Buy.html">BUY A HOUSE</a>
+		  <a class="active" href="RentalAdmin.html">TURNKEY RENTAL</a>
+		  <a href="Lenders.html">LENDERS</a>
+		  <a href="Contractors.html">CONTRACTORS</a>
 		</div>
-</header>
+		<div class="container">
+		<script>
+			var houses = JSON.parse(localStorage.getItem('adminHouses'))
+			for(var i =0; i < houses.length; i++){
+			    document.write('<div style="background:gray">')
+				document.write('<div id="myCarousel" class="carousel slide" data-ride="carousel">');
+				document.write('	<div class="carousel-inner">');
 
-<div id="navbar" class="sticky">
-  <a href="Home.html"> HOME</a>
-  <a href="Sale.html">SELL A HOUSE</a>
-  <a href="Buy.html">BUY A HOUSE</a>
-  <a class="active" href="Rental.html">TURNKEY RENTAL</a>
-  <a href="Lenders.html">LENDERS</a>
-  <a href="Contractors.html">CONTRACTORS</a>
-</div>
+				for(var j =0; j < houses[i].images.length; j++){
+				    if(j==0)
+						document.write('		<div class="item active">');
+					else
+						document.write('		<div class="item">');
+					document.write('			<img src="' + houses[i].images[j] + '" style="height:325px; width:100%;">');
+					document.write('			</div>');
+				}
 
-<div style=" padding-top: 60px;">
-  <h3>Content will be displayed here</h3>
-  <p>This is sample text. This test content is for displaying the sticky navigation bar. Actual content will be coming soon here</p>
-</div>
+				document.write('	</div>');
+				document.write('</div>');
+				document.write("</div>")
+
+				document.write('<div class="footerTextCopy">');
+				document.write('<table>');
+					document.write('<tr>');
+					  document.write('<td> <label> propertyTitle :</label> </td>');
+					  document.write('<td> <label>' + houses[i].propertyTitle +  '</label> </td>');
+					   document.write('<td style="width:50px">')
+
+					  document.write('<td> <label> propertyType :</label> </td>');
+					  document.write('<td> <label>' + houses[i].propertyType +  '</label> </td>');
+					document.write('</tr>');
+					document.write('<tr>');
+					  document.write('<td> <label>propertySqrFt :</label> </td>');
+					  document.write('<td> <label>' + houses[i].propertySqrFt +  '</label> </td>');
+					   document.write('<td style="width:50px">')
+					  document.write('<td> <label> propertyPrice :</label> </td>');
+					  document.write('<td> <label>' + houses[i].propertyPrice +  '</label> </td>');
+					document.write('</tr>');
+					document.write('<tr>');
+					  document.write('<td> <label>propertyBed :</label> </td>');
+					  document.write('<td> <label>' + houses[i].propertyBed +  '</label> </td>');
+					   document.write('<td style="width:50px">')
+					  document.write('<td> <label> propertyBath :</label> </td>');
+					  document.write('<td> <label>' + houses[i].propertyBath +  '</label> </td>');
+					document.write('</tr>');
+					document.write('<tr>');
+					  document.write('<td> <label>propertyParking :</label> </td>');
+					  document.write('<td> <label>' + houses[i].propertyParking +  '</label> </td>');
+
+					  document.write('<td style="width:50px">')
+
+					  document.write('<td> <label> propertyCountry :</label> </td>');
+					  document.write('<td> <label>' + houses[i].propertyCountry +  '</label> </td>');
+					document.write('</tr>');
+
+					document.write('<tr>');
+					  document.write('<td> <label>propertyAddress1 :</label> </td>');
+					  document.write('<td> <label>' + houses[i].propertyAddress1 +  '</label> </td>');
+
+					  document.write('<td style="width:50px">')
+
+					  document.write('<td> <label> propertyAddress2 :</label> </td>');
+					  document.write('<td> <label>' + houses[i].propertyAddress2 +  '</label> </td>');
+					document.write('</tr>');
+
+					document.write('<tr>');
+					  document.write('<td> <label>propertyCity :</label> </td>');
+					  document.write('<td> <label>' + houses[i].propertyCity +  '</label> </td>');
+
+					  document.write('<td style="width:50px">')
+
+					  document.write('<td> <label> propertyZip :</label> </td>');
+					  document.write('<td> <label>' + houses[i].propertyZip +  '</label> </td>');
+					document.write('</tr>');
+				document.write('</table>');
+				document.write('</div>');
+			}
+		</script>
+
+		</div>
 
 <footer>
 	<div class="footerColumn1">
         <h2>Real Estate Project</h2>
-                     Specializing in rentals, sales, and investments. 
-         
+                     Specializing in rentals, sales, and investments.
+
 	</div>
 
 	<div class="footerColumn2">
@@ -41,6 +125,5 @@
 
     <div class="footerTextCopy">©2020 Dhwani Jacob Patrick Ramona Tim </div>
 </footer>
-
-</body>
+	</body>
 </html>
