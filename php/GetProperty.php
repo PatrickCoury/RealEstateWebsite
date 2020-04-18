@@ -4,11 +4,11 @@
     include 'ConnectToSQL.php';
     $conn = $GLOBALS['SQL_CONN'];       
 
-    $PROPERTY_KEY = $_GET['PROPERTY_KEY'];
+    $PROPERTY_KEY = $_POST['PROPERTY_KEY'];
 
     // Call query on SQL server
     $query = "SELECT * FROM ANDREWSDREAMLLC.property 
-              WHERE PROPERTY_KEY = '$PROPERTY_KEY;'";
+              WHERE PROPERTY_KEY = $PROPERTY_KEY;";
 
     $result = mysqli_query($conn, $query);
     
@@ -35,7 +35,7 @@
         $property["DATE"] = $row["PROPERTY_DATE"];
             
         $query = "SELECT * FROM ANDREWSDREAMLLC.property_amenity 
-                  WHERE PROPERTY_KEY = '$PROPERTY_KEY;'";
+                  WHERE PROPERTY_KEY = $PROPERTY_KEY;";
                   
         $result = mysqli_query($conn, $query);
         $row = mysqli_fetch_assoc($result); 

@@ -124,61 +124,7 @@ function setHome()
 
 function newProperty()
 {
-
-        // Populates the AddRentalAdmin page with a new property which has a unique ID 
-
-    xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() 
-    {
-        if (this.readyState == 4 && this.status == 200) 
-        {
-            var obj = JSON.parse(this.responseText);
-            
-            var xhr = new XMLHttpRequest();
-            xhr.open("POST", '../php/UpdateProperty', true);
-
-            //Send the proper header information along with the request
-            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-            xhr.onreadystatechange = function() { // Call a function when the state changes.
-                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) 
-                {
-                    var obj = JSON.parse(this.responseText);
-                    
-                    // Populate corresponding html input boxes with the default values
-                    // propertyTitle.value = 
-                    // propertyPrice.value = 
-                    // propertyType.value = 
-                    // propertyAddress1.value = 
-                    // propertyAddress2.value = 
-                    // propertyCity.value = 
-                    // propertyState.value = 
-                    // propertyCountry.value = 
-                    // propertyZip.value = 
-                    // propertySqrFt.value = 
-                    // propertyBed.value = 
-                    // propertyBath.value = 
-                    // propertyParking.value = 
-                    // propertyPetYes.value = 
-                    // propertyElectricityYes.value = 
-                    // propertyWSTYes.value = 
-                    // propertyMinLease.value = 
-                    // propertyMaxLease.value = 
-                    // propertyNote.value = 
-
-                }   
-            }
-            xhr.send(obj );
-        }
-    };
-    xmlhttp.open("GET", "../php/InsertProperty.php", true);
-    xmlhttp.send();
-    // Calls a backend script which puts a new property into the SQL database then returns it back
-
-}
-function setProperty()
-{
-
+    // this function should not add if the property key already exists
     var payload = {};
     payload.PROPERTY_KEY = null;
     
@@ -205,8 +151,26 @@ function setProperty()
     payload.PROPERTY_LEASE_MAX = propertyMaxLease.value;
     payload.PROPERTY_NOTE = propertyNote.value;
 
+        // Populates the AddRentalAdmin page with a new property which has a unique ID 
+
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() 
+    {
+        if (this.readyState == 4 && this.status == 200) 
+        {
+
+        }
+    };
+    xmlhttp.open("GET", "../php/InsertProperty.php", true);
+    xmlhttp.send();
+    // Calls a backend script which puts a new property into the SQL database then returns it back
+
+}
+
+function getProperty(propertyKey)
+{
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", '../php/UpdateProperty', true);
+    xhr.open("POST", '../php/GetProperty.php', true);
 
     //Send the proper header information along with the request
     xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -214,12 +178,80 @@ function setProperty()
     xhr.onreadystatechange = function() { // Call a function when the state changes.
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) 
         {
+            var obj = JSON.parse(this.responseText);
+            propertyTitle.value = obj.NAME;
+            propertyPrice.value = obj.PRICE;
+            propertyType.value = obj.TYPE;
+            propertyAddress1.value = obj.STREET_ADDRESS1;
+            propertyAddress2.value = obj.STREET_ADDRESS2;
+            propertyCity.value = obj.CITY;
+            propertyState.value = obj.STATE;
+            propertyCountry.value = obj.COUNTRY;
+            propertyZip.value = obj.ZIP;
+            // propertyAvailable.value = obj.AVAILABLE;
+            //propertyDate.value = obj.DATE;
+
+            propertySqrFt.value = obj.SQUARE_FEET;
+            propertyBed.value = obj.BED;
+            propertyBath.value = obj.BATH;
+            propertyParking.value = obj.PARKING;
+            propertyPetYes.value = obj.PET_FRIENDLY;
+            propertyElectricityYes.value = obj.ELECTRICITY;
+            propertyWSTYes.value = obj.WATER_SEWAGE_TRASH;
+            propertyMinLease.value = obj.LEASE_MIN;
+            propertyMaxLease.value = obj.LEASE_MAX;
+            propertyNote.value = obj.NOTE;
+
+        }   
+    }
+    xhr.send('PROPERTY_KEY=' + propertyKey);
+}
+
+function setProperty(propertyKey)
+{
+    
+    var payload = {};
+    payload.PROPERTY_KEY = propertyKey;
+    
+    payload.PROPERTY_NAME = propertyTitle.value;
+    payload.PROPERTY_PRICE = propertyPrice.value;
+    payload.PROPERTY_TYPE = propertyType.value;
+    payload.PROPERTY_STREET_ADDRESS1 = propertyAddress1.value;
+    payload.PROPERTY_STREET_ADDRESS2 = propertyAddress2.value;
+    payload.PROPERTY_CITY = propertyCity.value;
+    payload.PROPERTY_STATE = propertyState.value;
+    payload.PROPERTY_COUNTRY = propertyCountry.value;
+    payload.PROPERTY_ZIP = propertyZip.value;
+    payload.PROPERTY_AVAILABLE = null; 
+    payload.PROPERTY_DATE = null; // Set in backend
+
+    payload.PROPERTY_SQUARE_FEET = propertySqrFt.value;
+    payload.PROPERTY_BED = propertyBed.value;
+    payload.PROPERTY_BATH = propertyBath.value;
+    payload.PROPERTY_PARKING = propertyParking.value;
+    payload.PROPERTY_PET_FRIENDLY = propertyPetYes.value;
+    payload.PROPERTY_ELECTRICITY = propertyElectricityYes.value;
+    payload.PROPERTY_WATER_SEWAGE_TRASH =  propertyWSTYes.value;
+    payload.PROPERTY_LEASE_MIN = propertyMinLease.value;
+    payload.PROPERTY_LEASE_MAX = propertyMaxLease.value;
+    payload.PROPERTY_NOTE = propertyNote.value;
+
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", '../php/UpdateProperty.php', true);
+
+    //Send the proper header information along with the request
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    xhr.onreadystatechange = function() { // Call a function when the state changes.
+        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) 
+        {
+            alert(this.responseText);
             // Request finished. Do processing here.
             // Success message
         }   
     }
-    jpayload = JSON.encode(payload);
-    xhr.send(jpayload);
+    
+    xhr.send('PAYLOAD=' + JSON.stringify(payload));
 }
 
 
@@ -314,7 +346,7 @@ function getProperties()
                update_button.id="rentalPropertyUpdate" 
                update_button.className = "button"
                update_button.style="width: 100px;margin-top: 0px;";
-               update_button.onClick = "location.href='UpdateRentalAdmin.html/?'" + property_key; // UpdateRentalAdmin.html should be a php page or have inline php to facilitate providing property_key to the page
+               update_button.onclick = "location.href='UpdateRentalAdmin.php/?ID=" +  property_key +"'"; // UpdateRentalAdmin.html should be a php page or have inline php to facilitate providing property_key to the page
                update_button.innerHTML = "Update";
                delete_button = document.createElement("button");
                delete_button.type = "button";
@@ -327,12 +359,8 @@ function getProperties()
                tr_tag.appendChild(menu_td_tag); 
 
                document.getElementById("propertiesTable").appendChild(tr_tag);
-               
   
             }
-            
-
-
 
         }
     };

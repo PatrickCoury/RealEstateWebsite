@@ -7,6 +7,7 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
   <link rel="stylesheet" type="text/css" href="../style/style.css">
+  <script type="text/javascript" src="../javascript/main.js" charset="utf-8"></script>
 </head>
 <body>
 	<header>
@@ -213,16 +214,10 @@
        <tr>
         <td colspan="5" align="center">
             <button type="button" id="clear" class="button" style="width: 120px;" tabindex="25">Clear</button>
-            <button type="button" id="add" class="button" style="width: 120px;" tabindex="24" onclick="AddHouse()">Add</button>
-            <button type="button" id="addMore" class="button" style="width: 120px;" tabindex="23">Add More</button>
+            <button type="button" id="add" class="button" style="width: 120px;" tabindex="24" onclick="newProperty()" >Add</button>
+            <button type="button" id="addMore" class="button" style="width: 120px;" tabindex="23" onclick="alert('TODO: Add and reset form')"> Add More</button>
         </td>
        </tr>
-       <tr>
-        <td colspan="7" align="center">
-            <button type="button" id="setProperty" onclick="setProperty()" class="button" tabindex="23">Set Property</button>
-        </td>
-       </tr>
-
      </table>
 
 </div>
