@@ -1,3 +1,5 @@
 sudo mysql -u realestate -p  ANDREWSDREAMLLC < RealestateDump.sql
+mysqldump -u realestate -p  ANDREWSDREAMLLC > ~/Desktop/RealestateDump.sql
+
 
 sudo cp -r ~/vboxshare/ /var/www/html/

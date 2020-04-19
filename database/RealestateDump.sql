@@ -38,7 +38,7 @@ CREATE TABLE `about_us` (
 
 LOCK TABLES `about_us` WRITE;
 /*!40000 ALTER TABLE `about_us` DISABLE KEYS */;
-INSERT INTO `about_us` VALUES ('Buy - Sell - Rent - Invest','300 Olympia Dr. Troy, MI 48084','(248) 390-0738','Fax placeholder','steve@andrewsdreamllc.com','https://www.facebook.com/Andrewsdreamllc/');
+INSERT INTO `about_us` VALUES ('Buy - Sell - Rent - Invest','300 Olympia Dr. Troy, MI 48084','(248) 390-0','Fax placeho','steve@andrewsdreamllc.com','https://www.facebook.com/Andrewsdreamllc/');
 /*!40000 ALTER TABLE `about_us` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -87,7 +87,7 @@ CREATE TABLE `home_page` (
 
 LOCK TABLES `home_page` WRITE;
 /*!40000 ALTER TABLE `home_page` DISABLE KEYS */;
-INSERT INTO `home_page` VALUES ('Steve Ehrman''s description placeholder', NULL,'<iframe width="560" height="315" src="https://www.youtube.com/embed/NpEaa2P7qZI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>');
+INSERT INTO `home_page` VALUES ('Steve Ehrman\'\'s description placeholder',NULL,'<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/NpEaa2P7qZI\" frameborder=\"0\" allow=\"accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture\" allowfullscreen></iframe>');
 /*!40000 ALTER TABLE `home_page` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -113,7 +113,7 @@ CREATE TABLE `property` (
   `PROPERTY_AVAILABLE` tinyint(1) NOT NULL,
   `PROPERTY_DATE` datetime NOT NULL,
   PRIMARY KEY (`PROPERTY_KEY`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -122,6 +122,7 @@ CREATE TABLE `property` (
 
 LOCK TABLES `property` WRITE;
 /*!40000 ALTER TABLE `property` DISABLE KEYS */;
+INSERT INTO `property` VALUES (2,'-','-',0,'dogbreath','dogbreath','dogbereth','sdf','-','-',0,0,'2020-04-19 13:13:07'),(3,'-','-',0,'-','-','-','-','-','-',0,0,'2020-04-18 13:46:42');
 /*!40000 ALTER TABLE `property` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -155,6 +156,7 @@ CREATE TABLE `property_amenity` (
 
 LOCK TABLES `property_amenity` WRITE;
 /*!40000 ALTER TABLE `property_amenity` DISABLE KEYS */;
+INSERT INTO `property_amenity` VALUES (2,0,0,0,'-',0,'-','-','-','-','-'),(3,0,0,0,'-',0,'-','-','-','-','-');
 /*!40000 ALTER TABLE `property_amenity` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -215,4 +217,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-15 13:44:34
+-- Dump completed on 2020-04-19 13:16:14

@@ -126,7 +126,6 @@ function newProperty()
 {
     // this function should not add if the property key already exists
     var payload = {};
-    payload.PROPERTY_KEY = null;
     
     payload.PROPERTY_NAME = propertyTitle.value;
     payload.PROPERTY_PRICE = propertyPrice.value;
@@ -137,8 +136,8 @@ function newProperty()
     payload.PROPERTY_STATE = propertyState.value;
     payload.PROPERTY_COUNTRY = propertyCountry.value;
     payload.PROPERTY_ZIP = propertyZip.value;
-    payload.PROPERTY_AVAILABLE = null; 
-    payload.PROPERTY_DATE = null; // Set in backend
+    // payload.PROPERTY_AVAILABLE = null; 
+    // payload.PROPERTY_DATE = null; // Set in backend
 
     payload.PROPERTY_SQUARE_FEET = propertySqrFt.value;
     payload.PROPERTY_BED = propertyBed.value;
@@ -153,18 +152,17 @@ function newProperty()
 
         // Populates the AddRentalAdmin page with a new property which has a unique ID 
 
-    xmlhttp = new XMLHttpRequest();
-    xmlhttp.onreadystatechange = function() 
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "../php/InsertProperty.php", true);
+    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    xhr.onreadystatechange = function() 
     {
         if (this.readyState == 4 && this.status == 200) 
         {
-
+            alert(this.responseText);
         }
     };
-    xmlhttp.open("GET", "../php/InsertProperty.php", true);
-    xmlhttp.send();
-    // Calls a backend script which puts a new property into the SQL database then returns it back
-
+    xhr.send('PAYLOAD=' + JSON.stringify(payload));
 }
 
 function getProperty(propertyKey)
@@ -309,9 +307,9 @@ function getProperties()
             
             function createProperty(property, index)
             {
-               property_key = property['KEY'];
-               property_name = property['NAME'];
-               property_address = property['STREET1_ADDRESS'];
+               var property_key = property['KEY'];
+               var property_name = property['NAME'];
+               var property_address = property['STREET_ADDRESS1'];
 
                tr_tag = document.createElement("tr");
 
@@ -346,7 +344,7 @@ function getProperties()
                update_button.id="rentalPropertyUpdate" 
                update_button.className = "button"
                update_button.style="width: 100px;margin-top: 0px;";
-               update_button.onclick = "location.href='UpdateRentalAdmin.php/?ID=" +  property_key +"'"; // UpdateRentalAdmin.html should be a php page or have inline php to facilitate providing property_key to the page
+               update_button.onclick = function(){document.location.href='UpdateRentalAdmin.php?ID=' +  property_key;}; // UpdateRentalAdmin.html should be a php page or have inline php to facilitate providing property_key to the page
                update_button.innerHTML = "Update";
                delete_button = document.createElement("button");
                delete_button.type = "button";
