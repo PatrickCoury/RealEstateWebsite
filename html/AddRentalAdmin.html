@@ -248,34 +248,6 @@
 
 
 
-		function AddHouse(){
-			houseInfo.propertyTitle = document.getElementById("propertyTitle").value;
-			houseInfo.propertyType = document.getElementById("propertyType").value;
-			houseInfo.propertyAddress1 = document.getElementById("propertyAddress1").value;
-			houseInfo.propertyAddress2 = document.getElementById("propertyAddress2").value;
-			houseInfo.propertySqrFt = document.getElementById("propertySqrFt").value;
-			houseInfo.propertyBed = document.getElementById("propertyBed").value;
-			houseInfo.propertyBath = document.getElementById("propertyBath").value;
-			houseInfo.propertyParking = document.getElementById("propertyParking").value;
-			houseInfo.propertyCity = document.getElementById("propertyCity").value;
-			houseInfo.propertyState = document.getElementById("propertyState").value;
-			houseInfo.propertyCountry = document.getElementById("propertyCountry").value;
-			houseInfo.propertyZip = document.getElementById("propertyZip").value;
-			houseInfo.propertyPrice = document.getElementById("propertyPrice").value;
-
-			var list = [];
-			if(JSON.parse(localStorage.getItem('adminHouses'))!=null)
-			{
-				var houses = JSON.parse(localStorage.getItem('adminHouses'));
-				houses.push(houseInfo);
-				localStorage.setItem('adminHouses', JSON.stringify(houses));
-			}
-			else
-			{
-				list.push(houseInfo);
-				localStorage.setItem('adminHouses', JSON.stringify(list));
-			}
-		}
 
 	</script>
 

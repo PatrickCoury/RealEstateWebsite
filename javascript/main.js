@@ -295,7 +295,7 @@ function addImagesClicked()
       
 }
 
-function getProperties()
+function getPropertiesAdmin()
 {
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() 
@@ -365,6 +365,66 @@ function getProperties()
     xmlhttp.open("GET", "../php/GetProperties.php", true);
     xmlhttp.send();
 
+}
+
+
+
+function getPropertiesUser()
+{
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() 
+    {
+        
+        if (this.readyState == 4 && this.status == 200) 
+        {
+            var properties = JSON.parse(this.responseText);
+            properties.forEach(createPropertyEntry);
+    
+            function createPropertyEntry(property, index)
+            {
+                //DEBUG since images don't work yet
+                property.images = [];
+        
+                document.write('<table align="center" width="100%">');
+                document.write('<col width="25%">');
+                document.write('<col width="10%">');
+                document.write('<col width="65%">');
+                if(index > 0)
+                {
+                    document.write('<tr>');
+                    document.write('<td colspan="3"><hr class="line" style="width: 100%"/></td>');
+                    document.write('</tr>');
+                }
+                document.write('<tr>');
+                document.write('<td>  <div id="myCarousel" data-ride="carousel"> <div class="carousel-inner">');
+                for(var j =0; j < property.images.length; j++)
+                {
+                    if(j==0)
+                        document.write('<div class="item active">');
+                    else
+                        document.write('<div class="item">');
+                
+                    document.write('<a href="'+ property.images[j]+'" target="_blank"><img src="' + houses[i].images[j] + '"></a>');
+                    document.write('</div>');
+                }
+                document.write('</div>');
+                document.write('</div>');
+                document.write('</td>');
+                document.write('<td></td>');
+                document.write('<td valign="top"> <p class="title" style="font-size:30px;">' + property['NAME'] +  '</p>'
+                    +'</br><label class="title" style="font-size:20px;">Type - ' + property['TYPE'] 
+                    +'</br>Address - ' + property['STREET_ADDRESS1'] + ', '+ property['STREET_ADDRESS2'] + ', ' + property['CITY'] +', '+ property['STATE'] + ' - ' + property['ZIP']
+                    +'</br>Price - $' + property['PRICE'] +  ' per Month</label>'
+                    +'</br><button tag="more" type="button" id="'+ index +'" class="button" style="width: 80px;padding:2px;" onclick="displayPopup(this)">More</button>'
+                    +'</td>');
+                document.write('</tr>');
+                document.write('</table>');
+            };
+        }
+    }
+    
+    xmlhttp.open("GET", "../php/GetProperties.php", true);
+    xmlhttp.send();
 }
 //var loadFile = function(event) {
   //  var output = document.getElementById('image');
