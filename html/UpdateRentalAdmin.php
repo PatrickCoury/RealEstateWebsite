@@ -209,6 +209,10 @@
      </table>
     <br/>
 </div>
+<script> 
+        
 
+        getProperty(<?php echo $_GET['ID']; ?>); 
+</script>
 </body>
 </html>
