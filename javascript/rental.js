@@ -41,7 +41,7 @@ function setProperty(propertyKey)
     payload.PROPERTY_STATE = propertyState.value;
     payload.PROPERTY_COUNTRY = propertyCountry.value;
     payload.PROPERTY_ZIP = propertyZip.value;
-    payload.PROPERTY_AVAILABLE = null; 
+    payload.PROPERTY_AVAILABLE = propertyAvailable.value; 
     payload.PROPERTY_DATE = null; // Set in backend
 
     payload.PROPERTY_SQUARE_FEET = propertySqrFt.value;
@@ -179,7 +179,7 @@ function getProperty(propertyKey)
             propertyState.value = obj.STATE;
             propertyCountry.value = obj.COUNTRY;
             propertyZip.value = obj.ZIP;
-            // propertyAvailable.value = obj.AVAILABLE;
+             propertyAvailable.value = obj.AVAILABLE;
             //propertyDate.value = obj.DATE;
 
             propertySqrFt.value = obj.SQUARE_FEET;
@@ -248,11 +248,17 @@ function getPropertiesAdmin()
                update_button.id="rentalPropertyUpdate" 
                update_button.className = "button"
                update_button.style="width: 100px;margin-top: 0px;";
-               update_button.onclick = function(){document.location.href='UpdateRentalAdmin.php?ID=' +  property_key;}; // UpdateRentalAdmin.html should be a php page or have inline php to facilitate providing property_key to the page
+               update_button.onclick = function(){document.location.href='UpdateRentalAdmin.php?ID=' +  property_key;}; 
                update_button.innerHTML = "Update";
                delete_button = document.createElement("button");
                delete_button.type = "button";
                delete_button.id="rentalPropertyUpdate";
+               delete_button.onclick = function(){
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.open("GET", "../php/DeleteProperty.php?ID=" +  property_key, true);
+                    xmlhttp.send();
+                    location.reload();
+                }; 
                delete_button.className = "button";
                delete_button.style="width: 100px;margin-top: 0px;";
                delete_button.innerHTML = "Delete";
