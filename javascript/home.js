@@ -8,6 +8,25 @@ function isNumberKey(evt) {
     return true;
 }
 
+function loadAdminHomePage() 
+{
+    xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() 
+    {
+        if (this.readyState == 4 && this.status == 200) 
+        {
+            var obj = JSON.parse(this.responseText);
+            document.getElementById("homeDescription").innerHTML = obj.DESCRIPTION;
+            document.getElementById("add").setAttribute('value', obj.ADDRESS);
+            document.getElementById("contact").setAttribute('value', obj.CONTACT_NUMBER);
+            document.getElementById("email").setAttribute('value', obj.EMAIL_ADDRESS);
+            document.getElementById("facebook").setAttribute('value', obj.FACEBOOK);
+        }
+    };
+    xmlhttp.open("GET", "../php/GetAboutUs.php", true);
+    xmlhttp.send();
+}
+
 //Load Home Page Information
 function loadHomePage() 
 {
@@ -18,7 +37,7 @@ function loadHomePage()
         {
             var obj = JSON.parse(this.responseText);
         
-            document.getElementById("homeVideo").innerHTML = obj.VIDEO_URL.trim();
+            //document.getElementById("homeVideo").innerHTML = obj.VIDEO_URL.trim();
         }
     };
     xmlhttp.open("GET", "../php/GetHomePage.php", true);
@@ -34,7 +53,7 @@ function loadHomePage()
             document.getElementById("add").innerHTML = obj.ADDRESS;
             document.getElementById("contact").innerHTML = obj.CONTACT_NUMBER;
             document.getElementById("email").innerHTML = obj.EMAIL_ADDRESS;
-            document.getElementById("facebook").innerHTML = obj.FACEBOOK;
+            document.getElementById("facebook").href = obj.FACEBOOK;
         }
     };
     xmlhttp.open("GET", "../php/GetAboutUs.php", true);
@@ -44,16 +63,15 @@ function loadHomePage()
 //Update Home Page
 function setHome()
 {
-
     var payload = {};
 
-    payload.DESCRIPTION = document.getElementById('description').value;
-    payload.COMPANY_ADDRESS = document.getElementById('address').value;
-    payload.COMPANY_CONTACT_NUMBER = document.getElementById('contactNumber').value;
-    payload.COMPANY_FAX_NUMBER = document.getElementById('fax').value;
-    payload.COMPANY_EMAIL_ADDRESS = document.getElementById('email').value;
-    payload.COMPANY_FACEBOOK = document.getElementById('facebook').value;
-    console.log(payload.DESCRIPTION);
+    payload.DESCRIPTION = document.getElementById("homeDescription").value;
+    payload.COMPANY_ADDRESS = document.getElementById("add").value;
+    payload.COMPANY_CONTACT_NUMBER = document.getElementById("contact").value;
+    payload.COMPANY_FAX_NUMBER = "";
+    payload.COMPANY_EMAIL_ADDRESS = document.getElementById("email").value;
+    payload.COMPANY_FACEBOOK = document.getElementById("facebook").value;
+
     var xhr = new XMLHttpRequest();
     xhr.open("POST", '../php/UpdateAboutUs.php', true);
 
@@ -63,12 +81,13 @@ function setHome()
     xhr.onreadystatechange = function() { // Call a function when the state changes.
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) 
         {
-            alert("Home page successfully updated")
+            alert("Home page successfully updated");
         }   
     }
     jpayload = 'DESCRIPTION='+payload.DESCRIPTION+'&COMPANY_ADDRESS='+payload.COMPANY_ADDRESS+'&COMPANY_CONTACT_NUMBER='+payload.COMPANY_CONTACT_NUMBER+'&COMPANY_FAX_NUMBER='+payload.COMPANY_FAX_NUMBER+'&COMPANY_EMAIL_ADDRESS='+payload.COMPANY_EMAIL_ADDRESS+'&COMPANY_FACEBOOK='+payload.COMPANY_FACEBOOK;
     //jpayload = 'DESCRIPTION='+document.getElementById('description').value+'&COMPANY_ADDRESS='+document.getElementById('address').value+'&COMPANY_CONTACT_NUMBER='+document.getElementById('contactNumber').value+'&COMPANY_FAX_NUMBER='+document.getElementById('fax').value+'&COMPANY_EMAIL_ADDRESS='+document.getElementById('email').value+'&COMPANY_FACEBOOK='+document.getElementById('facebook').value
     xhr.send(jpayload);
+    loadAdminHomePage();
 }
 
 function emailValidation(email){

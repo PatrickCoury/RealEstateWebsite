@@ -25,10 +25,11 @@ DROP TABLE IF EXISTS `about_us`;
 CREATE TABLE `about_us` (
   `DESCRIPTION` text NOT NULL,
   `COMPANY_ADDRESS` varchar(255) NOT NULL,
-  `COMPANY_CONTACT_NUMBER` varchar(11) NOT NULL,
-  `COMPANY_FAX_NUMBER` varchar(11) DEFAULT NULL,
+  `COMPANY_CONTACT_NUMBER` varchar(30) NOT NULL,
+  `COMPANY_FAX_NUMBER` varchar(30) DEFAULT NULL,
   `COMPANY_EMAIL` varchar(45) NOT NULL,
-  `COMPANY_FACEBOOK` varchar(45) DEFAULT NULL
+  `COMPANY_FACEBOOK` varchar(45) DEFAULT NULL,
+  `DESCRIPTION_ID` varchar(45) NOT NULL,  PRIMARY KEY (`DESCRIPTION_ID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -38,7 +39,7 @@ CREATE TABLE `about_us` (
 
 LOCK TABLES `about_us` WRITE;
 /*!40000 ALTER TABLE `about_us` DISABLE KEYS */;
-INSERT INTO `about_us` VALUES ('Buy - Sell - Rent - Invest','300 Olympia Dr. Troy, MI 48084','(248) 390-0738','Fax placeholder','steve@andrewsdreamllc.com','https://www.facebook.com/Andrewsdreamllc/');
+INSERT INTO `about_us` VALUES ('Buy - Sell - Rent - Invest','300 Olympia Dr. Troy, MI 48084','(248) 390-0738','Fax placeholder','steve@andrewsdreamllc.com','https://www.facebook.com/Andrewsdreamllc/','1');
 /*!40000 ALTER TABLE `about_us` ENABLE KEYS */;
 UNLOCK TABLES;
 

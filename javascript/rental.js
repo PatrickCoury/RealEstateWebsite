@@ -328,3 +328,21 @@ function getPropertiesUser()
     xmlhttp.open("GET", "../php/GetProperties.php", true);
     xmlhttp.send();
 }
+
+function loadContactInfo() 
+{
+    var xmlhttp = new XMLHttpRequest();
+    xmlhttp.onreadystatechange = function() 
+    {
+        if (this.readyState == 4 && this.status == 200) 
+        {
+            var obj = JSON.parse(this.responseText);
+            document.getElementById("add").innerHTML = obj.ADDRESS;
+            document.getElementById("contact").innerHTML = obj.CONTACT_NUMBER;
+            document.getElementById("email").innerHTML = obj.EMAIL_ADDRESS;
+            document.getElementById("facebook").href = obj.FACEBOOK;
+        }
+    };
+    xmlhttp.open("GET", "../php/GetAboutUs.php", true);
+    xmlhttp.send();
+}

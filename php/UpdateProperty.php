@@ -5,8 +5,7 @@
     $conn = $GLOBALS['SQL_CONN'];  
 
     // There are three tables per property. Update each of them 
-    $PROPERTY = json_decode($_POST['PAYLOAD']);
-    
+    $PROPERTY = json_decode($_POST['PAYLOAD']);    
     
     $PROPERTY_KEY = $PROPERTY->PROPERTY_KEY;
     // $PROPERTY_IDENTIFIER = $PROPERTY->PROPERTY_IDENTIFIER;
