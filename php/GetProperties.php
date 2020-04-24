@@ -23,8 +23,8 @@
             $property["NAME"] = $row["PROPERTY_NAME"];
             $property["PRICE"] = $row["PROPERTY_PRICE"];
             $property["TYPE"] = $row["PROPERTY_TYPE"];
-            $property["STREET1_ADDRESS"] = $row["PROPERTY_STREET1_ADDRESS"];
-            $property["STREET2_ADDRESS"] = $row["PROPERTY_STREET2_ADDRESS"];
+            $property["STREET_ADDRESS1"] = $row["PROPERTY_STREET_ADDRESS1"];
+            $property["STREET_ADDRESS2"] = $row["PROPERTY_STREET_ADDRESS2"];
             $property["CITY"] = $row["PROPERTY_CITY"];
             $property["STATE"] = $row["PROPERTY_STATE"];
             $property["COUNTRY"] = $row["PROPERTY_COUNTRY"];

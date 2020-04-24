@@ -51,41 +51,8 @@
 
 <!-- All Properties -->
 	<script>
-		var houses = JSON.parse(localStorage.getItem('adminHouses'))
-		for(var i =0; i < houses.length; i++){
-			document.write('<table align="center" width="100%">');
-			document.write('<col width="25%">');
-			document.write('<col width="10%">');
-			document.write('<col width="65%">');
-			if(i>0){
-				document.write('<tr>');
-					document.write('<td colspan="3"><hr class="line" style="width: 100%"/></td>');
-				document.write('</tr>');
-			}
-				document.write('<tr>');
-				  document.write('<td>  <div id="myCarousel" data-ride="carousel"> <div class="carousel-inner">');
-				  for(var j =0; j < houses[i].images.length; j++){
-					if(j==0)
-						document.write('<div class="item active">');
-					else
-						document.write('<div class="item">');
-					document.write('<a href="'+houses[i].images[j]+'" target="_blank"><img src="' + houses[i].images[j] + '"></a>');
-					document.write('</div>');
-				  }
-				  document.write('</div>');
-				  document.write('</div>');
-				  document.write('</td>');
-				  document.write('<td></td>');
-				  document.write('<td valign="top"> <p class="title" style="font-size:30px;">' + houses[i].propertyTitle +  '</p>'
-				  +'</br><lable class="title" style="font-size:20px;">Type - ' + houses[i].propertyType 
-				  +'</br>Address - ' + houses[i].propertyAddress1 + ', '+ houses[i].propertyAddress2 + ', ' + houses[i].propertyCity +', '+ houses[i].propertyState + ' - ' + houses[i].propertyZip
-				  +'</br>Price - $' + houses[i].propertyPrice +  ' per Month</lable>'
-				  +'</br><button tag="more" type="button" id="'+ i +'" class="button" style="width: 80px;padding:2px;" onclick="displayPopup(this)">More</button>'
-				  +'</td>');
-				document.write('</tr>');
-			document.write('</table>');
-		}
 
+		getPropertiesUser();
 		//Property Popup
 		var property = document.getElementById("propertyPopup");
 		var span = document.getElementsByClassName("close")[0];

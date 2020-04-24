@@ -27,7 +27,8 @@ function addProperty(element){
 }
 
 function setProperty(propertyKey)
-{    
+{
+    
     var payload = {};
     payload.PROPERTY_KEY = propertyKey;
     
@@ -67,12 +68,19 @@ function setProperty(propertyKey)
             // Request finished. Do processing here.
             // Success message
         }   
-    }    
+    }
+    
     xhr.send('PAYLOAD=' + JSON.stringify(payload));
 }
 
-window.onload=function()
+function addImagesClicked()
 {
+    // PROPERTY_MEDIA table 
+    // PROPERTY_KEY
+    // PRPERTY_IMAGE
+    // PRIMARY_VIDEO
+
+
     var inputElement = document.getElementById('files');
     var c = document.getElementById('count');
 
@@ -82,12 +90,14 @@ window.onload=function()
     {
         for (var i = 0; i < inputElement.files.length; i++)
         {
-          payload.push(inputElement.files[i])
+            payload.push(inputElement.files[i])
         }
         c.innerHTML = payload.length.toString() + " Images Selected";
-    }   
+    }
 
-    /*var xhr = new XMLHttpRequest();
+    
+
+    var xhr = new XMLHttpRequest();
     xhr.open("POST", '../php/', true);
 
     //Send the proper header information along with the request
@@ -101,7 +111,8 @@ window.onload=function()
         }   
     }
     jpayload = JSON.encode(payload);
-    xhr.send(jpayload); */    
+    xhr.send(jpayload);
+      
 }
 
 function newProperty()
@@ -147,7 +158,6 @@ function newProperty()
     xhr.send('PAYLOAD=' + JSON.stringify(payload));
 }
 
-
 function getProperty(propertyKey)
 {
     var xhr = new XMLHttpRequest();
@@ -169,7 +179,7 @@ function getProperty(propertyKey)
             propertyState.value = obj.STATE;
             propertyCountry.value = obj.COUNTRY;
             propertyZip.value = obj.ZIP;
-            //propertyAvailable.value = obj.AVAILABLE;
+            // propertyAvailable.value = obj.AVAILABLE;
             //propertyDate.value = obj.DATE;
 
             propertySqrFt.value = obj.SQUARE_FEET;
@@ -187,6 +197,7 @@ function getProperty(propertyKey)
     }
     xhr.send('PROPERTY_KEY=' + propertyKey);
 }
+
 
 function getPropertiesAdmin()
 {
@@ -250,11 +261,14 @@ function getPropertiesAdmin()
                tr_tag.appendChild(menu_td_tag); 
 
                document.getElementById("propertiesTable").appendChild(tr_tag);
+  
             }
+
         }
     };
     xmlhttp.open("GET", "../php/GetProperties.php", true);
     xmlhttp.send();
+
 }
 
 function getPropertiesUser()
@@ -262,17 +276,17 @@ function getPropertiesUser()
     var xmlhttp = new XMLHttpRequest();
     xmlhttp.onreadystatechange = function() 
     {
-        
+
         if (this.readyState == 4 && this.status == 200) 
         {
             var properties = JSON.parse(this.responseText);
             properties.forEach(createPropertyEntry);
-    
+
             function createPropertyEntry(property, index)
             {
                 //DEBUG since images don't work yet
                 property.images = [];
-        
+
                 document.write('<table align="center" width="100%">');
                 document.write('<col width="25%">');
                 document.write('<col width="10%">');
@@ -291,7 +305,7 @@ function getPropertiesUser()
                         document.write('<div class="item active">');
                     else
                         document.write('<div class="item">');
-                
+
                     document.write('<a href="'+ property.images[j]+'" target="_blank"><img src="' + houses[i].images[j] + '"></a>');
                     document.write('</div>');
                 }
@@ -310,7 +324,7 @@ function getPropertiesUser()
             };
         }
     }
-    
+
     xmlhttp.open("GET", "../php/GetProperties.php", true);
     xmlhttp.send();
 }
