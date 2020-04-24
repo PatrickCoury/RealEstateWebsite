@@ -41,6 +41,7 @@ body {
   border: 4px solid #000000;
   font-family:sans-serif;
   width: 100%;
+  z-index: 500;
 }
 
 #navbar a {
@@ -53,14 +54,12 @@ body {
   font-size:20px;
 }
 
-#navbar a:hover {
+#navbar a:hover{
   background-color: #000000;
-
 }
 
 #navbar .active {
   background-color: #000000;
-
 }
 
 .sticky {
@@ -174,8 +173,7 @@ td.contactInfoBack {
 
 .input{
     padding: 10px;
-    background: #ffffff;
-    opacity: 0.5;
+    background: #FFFFE0;
     border: 1px solid #800000;
     border-radius: 10px;
     width:95%;
@@ -330,3 +328,73 @@ footer {
   width: 80%;
   border-radius: 10px 10px 10px 10px;
 }
+
+.checkbox > input[type=checkbox] {
+  visibility: hidden;
+}
+
+.checkbox {
+  position: relative;
+  display: block;
+  width: 170px;
+  height: 26px;
+  margin: 0 auto;
+  background: #FFFFE0;
+  border: 1.5px solid #800000;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+
+.checkbox:after {
+  position: absolute;
+  display: inline;
+  right: 10px;
+  content: 'NotAvailable';
+  color: #000000;
+  font: 13px/26px Times New Roman, Times New Roman;
+  font-weight: bold;
+  text-transform: capitalize;
+  z-index: 0;
+}
+
+.checkbox:before {
+  position: absolute;
+  display: inline;
+  left: 10px;
+  content: 'Available';
+  color: #800000;
+  font: 13px/26px Times New Roman, Times New Roman;
+  font-weight: bold;
+  text-transform: capitalize;
+  z-index: 0;
+}
+
+.checkbox label {
+  position: absolute;
+  display: block;
+  top: 3px;
+  left: 4px;
+  width: 80px;
+  height: 20px;
+  background: #000000;
+  cursor: pointer;
+  transition: all 0.5s linear;
+  -webkit-transition: all 0.5s linear;
+  -moz-transition: all 0.5s linear;
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  z-index: 1;
+}
+
+.checkbox input[type=checkbox]:checked + label {
+  left: 87px;
+  background: #800000;
+}
+
+  .thumb {
+    height: 70px;
+    width: 70px;
+    margin: 5px 5px 5px 5px;
+  }
