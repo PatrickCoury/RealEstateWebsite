@@ -324,37 +324,17 @@ function setProperty(propertyKey)
     payload.PROPERTY_NOTE = propertyNote.value;
 
     //Radio Values
-    var ele = document.getElementsByTagName('input');
-    var pet, electricity, WST;
-    var flag = 1;
-    for(i = 0; i < ele.length; i++) { 
-        if(ele[i].type="radio") { 
-            if(ele[i].checked){
-                if(flag == 1){
-                    pet = ele[i].value;
-                    flag ++;
-                } else if(flag == 2){
-                    electricity = ele[i].value;
-                    flag ++;
-                } else if(flag == 3){
-                    WST = ele[i].value;
-                    flag ++;
-                }                    
-            }
-        } 
-    }
-
-    if(pet == "yes")
+    if(petYes.checked)
         payload.PROPERTY_PET_FRIENDLY = 1;   
     else
         payload.PROPERTY_PET_FRIENDLY = 0;
 
-    if(electricity == "yes")
+    if(electricityYes.checked)
         payload.PROPERTY_ELECTRICITY = 1;   
     else
         payload.PROPERTY_ELECTRICITY = 0;
 
-    if(WST == "yes")
+    if(WSTYes.checked)
         payload.PROPERTY_WATER_SEWAGE_TRASH = 1;   
     else
         payload.PROPERTY_WATER_SEWAGE_TRASH = 0;
@@ -423,11 +403,17 @@ function getPropertiesAdmin()
                update_button.id="rentalPropertyUpdate" 
                update_button.className = "button"
                update_button.style="width: 100px;margin-top: 0px;";
-               update_button.onclick = function(){document.location.href='UpdateRentalAdmin.html?ID=' +  property_key;}; // UpdateRentalAdmin.html should be a php page or have inline php to facilitate providing property_key to the page
+               update_button.onclick = function(){document.location.href='UpdateRentalAdmin.php?ID=' +  property_key;}; // UpdateRentalAdmin.html should be a php page or have inline php to facilitate providing property_key to the page
                update_button.innerHTML = "Update";
                delete_button = document.createElement("button");
                delete_button.type = "button";
                delete_button.id="rentalPropertyUpdate";
+               delete_button.onclick = function(){
+                    var xmlhttp = new XMLHttpRequest();
+                    xmlhttp.open("GET", "../php/DeleteProperty.php?ID=" +  property_key, true);
+                    xmlhttp.send();
+                    location.reload();
+                }; 
                delete_button.className = "button";
                delete_button.style="width: 100px;margin-top: 0px;";
                delete_button.innerHTML = "Delete";

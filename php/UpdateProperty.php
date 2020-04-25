@@ -8,6 +8,7 @@
     $PROPERTY = json_decode($_POST['PAYLOAD']);    
     
     $PROPERTY_KEY = $PROPERTY->PROPERTY_KEY;
+
     // $PROPERTY_IDENTIFIER = $PROPERTY->PROPERTY_IDENTIFIER;
     //$PROPERTY_NAME = $PROPERTY->PROPERTY_NAME;
     $PROPERTY_PRICE = $PROPERTY->PROPERTY_PRICE;
@@ -34,7 +35,7 @@
 
     if (mysqli_query($conn, $query))
     {
-        echo "Property updated";
+
     }
     else 
     {
