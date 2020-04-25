@@ -35,8 +35,7 @@ function loadHomePage()
     {
         if (this.readyState == 4 && this.status == 200) 
         {
-            var obj = JSON.parse(this.responseText);
-        
+            var obj = JSON.parse(this.responseText);        
             //document.getElementById("homeVideo").innerHTML = obj.VIDEO_URL.trim();
         }
     };

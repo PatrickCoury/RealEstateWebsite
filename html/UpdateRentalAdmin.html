@@ -41,7 +41,7 @@
        </tr>
       <tr>
         <td style="padding-top: 20px;">
-            <p class="title" id="propertyTitle">Property Title</p>
+            <p class="title" id="propertyTitle" style="padding-left: 15px;"></p>
         </td style="padding-top: 20px;">
         <td>
             <div class="checkbox">
@@ -133,10 +133,10 @@
             Pet Friendly?
         </td>
         <td>
-            <input type="radio" id="propertyPetYes" name="propertyPet" value="yes" tabindex="14" checked="checked">
-            <label for="yes" class="text">YES</label>
-            <input type="radio" id="propertyPetNo" name="propertyPet" value="no" tabindex="15">
-            <label for="no" class="text">No</label>
+            <label class="text" style="padding:0px;"><input type="radio" id = "petYes" name="propertyPet" value="yes" tabindex="16">
+            YES</label>
+            <label class="text"><input type="radio" id = "petNo" name="propertyPet" value="no" tabindex="17">
+            No</label>
         </td>
        </tr>
        <tr>
@@ -150,10 +150,10 @@
             Electricity
         </td>
         <td>
-            <input type="radio" id="propertyElectricityYes" name="propertyElectricity" value="yes" tabindex="16" checked="checked">
-            <label for="yes" class="text">YES</label>
-            <input type="radio" id="propertyElectricityNo" name="propertyElectricity" value="no" tabindex="17">
-            <label for="no" class="text">No</label>
+            <label class="text" style="padding:0px;"><input type="radio" id = "electricityYes" name="propertyElectricity" value="yes" tabindex="16">
+            YES</label>
+            <label class="text"><input type="radio" id = "electricityNo" name="propertyElectricity" value="no" tabindex="17">
+            No</label>
         </td>
        </tr>
        <tr>
@@ -167,10 +167,10 @@
             Water, Sewage, Trash
         </td>
         <td>
-            <input type="radio" id="propertyWSTYes" name="propertyWST" value="yes" tabindex="18" checked="checked">
-            <label for="yes" class="text">YES</label>
-            <input type="radio" id="propertyWSTNo" name="propertyWST" value="no" tabindex="19">
-            <label for="no" class="text">No</label>
+            <label class="text" style="padding:0px;"><input type="radio" id = "WSTYes" name="propertyWST" value="yes" tabindex="16">
+            YES</label>
+            <label class="text"><input type="radio" id = "WSTNo" name="propertyWST" value="no" tabindex="17">
+            No</label>
         </td>
        </tr>
        <tr>
@@ -183,8 +183,8 @@
         <td class="text">
             Lease Period
         </td>
-        <td><input type="text" id="propertyMinLease" class="input" style="width:44%;" tabindex="20" placeholder="Min"> 
-        <input type="text" id="propertyMaxLease" class="input" style="width:44%;" tabindex="21" placeholder="Max">
+        <td><input type="text" id="propertyMinLease" class="input" style="width:44%;" tabindex="20" placeholder="Min"/> 
+        <input type="text" id="propertyMaxLease" class="input" style="width:44%;" tabindex="21" placeholder="Max"/>
         </td>
        </tr>
        <tr>
@@ -197,18 +197,18 @@
         <td class="text" valign="top">
             Extra Note
         </td>
-        <td><textarea rows="5" class="input" style="resize: none;overflow-y: auto;" tabindex="22"></textarea>
+        <td><textarea rows="5" class="input" style="resize: none;overflow-y: auto;" tabindex="22" id="propertyNote"></textarea>
         </td>
        </tr>
        <tr>
         <td colspan="5" align="center">
             <button type="button" id="cancel" class="button" style="width: 120px;" tabindex="24" onClick="location.href='RentalAdmin.html'">Cancel</button>
-            <button type="button" id="update" class="button" style="width: 120px;" tabindex="23">Update</button>
+            <button type="button" id="update" class="button" style="width: 120px;" tabindex="23" onClick="propertyUpdate()">Update</button>
         </td>
        </tr>
      </table>
     <br/>
 </div>
-
+<script>getRentalUpdatePage()</script>
 </body>
 </html>

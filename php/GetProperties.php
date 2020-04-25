@@ -5,7 +5,7 @@
     $conn = $GLOBALS['SQL_CONN'];       
 
     // Call query on SQL server
-    $query = 'select * from ANDREWSDREAMLLC.property;';
+    $query = "SELECT * FROM ANDREWSDREAMLLC.property WHERE PROPERTY_IDENTIFIER = 'R'";
     $result = mysqli_query($conn, $query);
     
     // If we have results 
