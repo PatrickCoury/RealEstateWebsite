@@ -424,7 +424,7 @@ function getPropertiesAdmin()
             }
         }
     };
-    xmlhttp.open("GET", "../php/GetProperties.php", true);
+    xmlhttp.open("GET", "../php/GetAllProperties.php", true);
     xmlhttp.send();
 }
 
@@ -482,7 +482,7 @@ function getPropertiesUser()
         }
     }
 
-    xmlhttp.open("GET", "../php/GetProperties.php", true);
+    xmlhttp.open("GET", "../php/GetPropertiesUserRentals.php", true);
     xmlhttp.send();
 }
 
