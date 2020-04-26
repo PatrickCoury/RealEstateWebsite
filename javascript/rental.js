@@ -391,7 +391,6 @@ function getPropertiesAdmin()
                address_p_tag.fontSize = "20px";
                address_p_tag.innerHTML = property_address;
                title_td_tag.appendChild(title_p_tag); 
-               title_td_tag.appendChild(document.createElement("br")); 
                title_td_tag.appendChild(address_p_tag); 
                tr_tag.appendChild(title_td_tag); 
 
@@ -402,7 +401,7 @@ function getPropertiesAdmin()
                update_button.type = "button";
                update_button.id="rentalPropertyUpdate" 
                update_button.className = "button"
-               update_button.style="width: 100px;margin-top: 0px;";
+               update_button.style="width: 100px;margin-top: 0px;margin-right: 5px;";
                update_button.onclick = function(){document.location.href='UpdateRentalAdmin.php?ID=' +  property_key;}; // UpdateRentalAdmin.html should be a php page or have inline php to facilitate providing property_key to the page
                update_button.innerHTML = "Update";
                delete_button = document.createElement("button");
