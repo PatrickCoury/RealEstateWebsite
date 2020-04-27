@@ -134,7 +134,7 @@ function oneMore(){
         alert("Please Fill Required Inputs.");
 	}else{
         newProperty();
-        window.location.replace("../html/AddRentalAdmin.html");
+       window.location.replace("../html/AddRentalAdmin.html");
     }
 }
 
@@ -207,18 +207,24 @@ function newProperty()
     else
         payload.PROPERTY_WATER_SEWAGE_TRASH = 0;
 
+    var formdata = new FormData();
+    for(var i = 0; i < fileList.length; i++) {
+        formdata.append("photo[]", fileList[i]);
+    }
+    formdata.append('PAYLOAD', JSON.stringify(payload));
+
     // Populates the AddRentalAdmin page with a new property which has a unique ID 
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "../php/InsertProperty.php", true);
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+    //xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
     xhr.onreadystatechange = function() 
     {
         if (this.readyState == 4 && this.status == 200) 
         {
             alert("New Preprty Added");
         }
-    };
-    xhr.send('PAYLOAD=' + JSON.stringify(payload));
+    };    
+    xhr.send(formdata);
 }
 
 var propertyID;
@@ -504,45 +510,21 @@ function loadContactInfo()
     xmlhttp.send();
 }
 
-function addImagesClicked()
-{
-    var inputElement = document.getElementById('files');
-    var c = document.getElementById('count');
-
-    var payload = [];
-    inputElement.addEventListener("change", handleFiles, false);
-    function handleFiles() 
-    {
-        for (var i = 0; i < inputElement.files.length; i++)
-        {
-            payload.push(inputElement.files[i])
-        }
-        c.innerHTML = payload.length.toString() + " Images Selected";
-    }    
-
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", '../php/', true);
-
-    //Send the proper header information along with the request
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-
-    xhr.onreadystatechange = function() { // Call a function when the state changes.
-        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) 
-        {
-            // Request finished. Do processing here.
-            // Success message
-        }   
-    }
-    jpayload = JSON.encode(payload);
-    xhr.send(jpayload);      
-}
-
-var files;
+var fileList = [];
+//var ImagesList = [];
 function imageSelection(evt){
-    files = Array.from(event.target.files);
+    var node1 = document.getElementById('list');
+    node1.innerHTML = "";
+    var node2 = document.getElementById('deletelist');
+    node2.innerHTML = "";
+    //var finalFiles = Array.from(event.target.files);
+    var finalFiles = event.target.files;
+    for (var i=0; i<finalFiles.length;i++){
+        fileList.push(finalFiles[i]);
+    }
     console.log("Original");
-    console.log(files);
-    imageList(files);
+    console.log(fileList);
+    imageList(fileList);
 }
 
 function onDelete(j){
@@ -551,10 +533,8 @@ function onDelete(j){
     var node2 = document.getElementById('deletelist');
     node2.innerHTML = "";
 
-    files.splice(j,1);
-    console.log("Removed");
-    console.log(files);
-    imageList(files);
+    fileList.splice(j,1);
+    imageList(fileList);
 }
 
 function imageList(files){
@@ -572,6 +552,7 @@ function imageList(files){
             var span1 = document.createElement('span');
             span1.id = 'span1';
             span1.innerHTML = ['<img id="',count,'" class="thumb" src="', e.target.result,'" title="', escape(theFile.name), '"/>'].join('');
+            //ImagesList.push(escape(theFile.name));
             
             var span2 = document.createElement('span');
             span2.id = 'span2';

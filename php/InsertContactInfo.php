@@ -1,5 +1,4 @@
 <?php
-
     $conn = $GLOBALS['SQL_CONN'];   
 
     // TODO: We need this table created

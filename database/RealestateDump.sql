@@ -170,7 +170,7 @@ DROP TABLE IF EXISTS `property_media`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `property_media` (
   `PROPERTY_KEY` int(11) NOT NULL,
-  `PROPERTY_IMAGE` blob,
+  `PROPERTY_IMAGE` text,
   `PROPERTY_VIDEO` text,
   KEY `PROPERTY_KEY_idx` (`PROPERTY_KEY`),
   CONSTRAINT `PROPERTY_KEY` FOREIGN KEY (`PROPERTY_KEY`) REFERENCES `property` (`PROPERTY_KEY`)

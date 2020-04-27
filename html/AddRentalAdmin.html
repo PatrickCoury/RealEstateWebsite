@@ -204,14 +204,14 @@
        </tr>
        <tr>
         <td colspan="5" align="center">
-            <input type="file" name="files[]" id="files" accept="image/*" class = "inputfile" multiple="multiple"/> <!--onchange="imageSelection(event)"-->
-            <label for="files">Choose Images</label>
+            <input type="file" name="photo" id="files" accept="image/*" class = "inputfile" multiple="multiple" onchange="imageSelection(event)" />
+            <label for="files">Choose Image</label>
         </td>
        </tr>
        <tr>
             <td colspan="5" align="center">
-                <output id="list"></output><br/>
-                <output id="deletelist"></output>
+                <output id="list"></output>
+                <br/><output id="deletelist"></output>
             </td>
        </tr>
        <tr>

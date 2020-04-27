@@ -24,7 +24,7 @@
             
     mysqli_query($conn, $query);
 
-    // Get primary key
+    //Get primary key
     $PROPERTY_KEY = mysqli_insert_id($conn);
     
     $PROPERTY_SQUARE_FEET = $PROPERTY->PROPERTY_SQUARE_FEET;
@@ -42,5 +42,15 @@
               VALUES($PROPERTY_KEY,$PROPERTY_SQUARE_FEET,$PROPERTY_BED,$PROPERTY_BATH,'$PROPERTY_PARKING',$PROPERTY_PET_FRIENDLY,$PROPERTY_ELECTRICITY,$PROPERTY_WATER_SEWAGE_TRASH,'$PROPERTY_LEASE_MIN','$PROPERTY_LEASE_MAX','$PROPERTY_NOTE')";
 
     mysqli_query($conn, $query);
+
+    foreach ($_FILES["photo"]["error"] as $key => $error) {
+      if ($error == UPLOAD_ERR_OK) {
+        $name = "../images/" . $_FILES['photo']['name'][$key];
+        echo $name;
+        move_uploaded_file( $_FILES["photo"]["tmp_name"][$key], "../images/" . $_FILES['photo']['name'][$key]);
+        $query = "INSERT INTO ANDREWSDREAMLLC.property_media VALUES($PROPERTY_KEY,'$name','')";
+        mysqli_query($conn, $query);
+      }
+    }
     echo json_encode($PROPERTY_KEY);
 ?>
