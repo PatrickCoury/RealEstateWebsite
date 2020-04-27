@@ -3,3 +3,4 @@ mysqldump -u realestate -p  ANDREWSDREAMLLC > ~/Desktop/RealestateDump.sql
 
 
 sudo cp -r ~/vboxshare/ /var/www/html/
+ sudo chmod -R 777 /var/www

@@ -58,12 +58,12 @@ function getAllProperties()
                menu_td_tag = document.createElement("td");
                menu_td_tag.padding = "10px";
                menu_td_tag.align = "center";
-               update_button = document.createElement("button");
-               update_button.type = "button";
-               update_button.id="rentalPropertyUpdate" 
-               update_button.className = "button"
-               update_button.style="width: 100px;margin-top: 0px;margin-right: 5px;";
-               update_button.onclick = function(){
+               more_button = document.createElement("button");
+               more_button.type = "button";
+               more_button.id="rentalPropertyUpdate" 
+               more_button.className = "button"
+               more_button.style="width: 100px;margin-top: 0px;margin-right: 5px;";
+               more_button.onclick = function(){
                     var property = document.getElementById("propertyPopup");
                     property.style.display = "block";
 
@@ -85,8 +85,8 @@ function getAllProperties()
 		                } 
 		            };
                };
-               update_button.innerHTML = "View";
-               menu_td_tag.appendChild(update_button); 
+               more_button.innerHTML = "View";
+               menu_td_tag.appendChild(more_button); 
                tr_tag.appendChild(menu_td_tag);
 
                document.getElementById("propertiesTable").appendChild(tr_tag);  

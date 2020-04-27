@@ -5,7 +5,7 @@
 
     $PROPERTY = json_decode($_POST['PAYLOAD']);
     
-    $PROPERTY_IDENTIFIER = "R"; // $PROPERTY_IDENTIFIER = $PROPERTY->PROPERTY_IDENTIFIER;
+    $PROPERTY_IDENTIFIER = "R";
     $PROPERTY_NAME = $PROPERTY->PROPERTY_NAME;
     $PROPERTY_PRICE = $PROPERTY->PROPERTY_PRICE;
     $PROPERTY_TYPE = $PROPERTY->PROPERTY_TYPE;
@@ -42,15 +42,21 @@
               VALUES($PROPERTY_KEY,$PROPERTY_SQUARE_FEET,$PROPERTY_BED,$PROPERTY_BATH,'$PROPERTY_PARKING',$PROPERTY_PET_FRIENDLY,$PROPERTY_ELECTRICITY,$PROPERTY_WATER_SEWAGE_TRASH,'$PROPERTY_LEASE_MIN','$PROPERTY_LEASE_MAX','$PROPERTY_NOTE')";
 
     mysqli_query($conn, $query);
+    
+    $PROPERTY_IMAGE = $PROPERTY->PROPERTY_IMAGE;
 
-    foreach ($_FILES["photo"]["error"] as $key => $error) {
-      if ($error == UPLOAD_ERR_OK) {
-        $name = "../images/" . $_FILES['photo']['name'][$key];
-        echo $name;
-        move_uploaded_file( $_FILES["photo"]["tmp_name"][$key], "../images/" . $_FILES['photo']['name'][$key]);
-        $query = "INSERT INTO ANDREWSDREAMLLC.property_media VALUES($PROPERTY_KEY,'$name','')";
+    if(!empty($PROPERTY_IMAGE)){
+        $query = "INSERT INTO ANDREWSDREAMLLC.property_media VALUES($PROPERTY_KEY,'$PROPERTY_IMAGE','')";
         mysqli_query($conn, $query);
-      }
+    }else{
+        foreach ($_FILES["photo"]["error"] as $key => $error) {
+            if ($error == UPLOAD_ERR_OK) {
+                $name = "../images/" . $_FILES['photo']['name'][$key];
+                move_uploaded_file( $_FILES["photo"]["tmp_name"][$key], "../images/" . $_FILES['photo']['name'][$key]);
+                $query = "INSERT INTO ANDREWSDREAMLLC.property_media VALUES($PROPERTY_KEY,'$name','')";
+                mysqli_query($conn, $query);
+            }
+        }
     }
     echo json_encode($PROPERTY_KEY);
 ?>

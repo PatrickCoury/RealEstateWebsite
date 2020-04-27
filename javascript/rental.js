@@ -134,7 +134,7 @@ function oneMore(){
         alert("Please Fill Required Inputs.");
 	}else{
         newProperty();
-       window.location.replace("../html/AddRentalAdmin.html");
+        window.location.replace("../html/AddRentalAdmin.html");
     }
 }
 
@@ -208,23 +208,28 @@ function newProperty()
         payload.PROPERTY_WATER_SEWAGE_TRASH = 0;
 
     var formdata = new FormData();
-    for(var i = 0; i < fileList.length; i++) {
-        formdata.append("photo[]", fileList[i]);
-    }
-    formdata.append('PAYLOAD', JSON.stringify(payload));
-
-    // Populates the AddRentalAdmin page with a new property which has a unique ID 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", "../php/InsertProperty.php", true);
-    //xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhr.onreadystatechange = function() 
-    {
-        if (this.readyState == 4 && this.status == 200) 
-        {
-            alert("New Preprty Added");
+    if (fileList.length > 0){
+        for(var i = 0; i < fileList.length; i++) {
+            formdata.append("photo[]", fileList[i]);
         }
-    };    
-    xhr.send(formdata);
+        payload.PROPERTY_IMAGE = "";
+        }else{
+            payload.PROPERTY_IMAGE = "../images/property_icon.png";
+        }
+        formdata.append('PAYLOAD', JSON.stringify(payload));
+
+        // Populates the AddRentalAdmin page with a new property which has a unique ID 
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", "../php/InsertProperty.php", true);
+        //xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        xhr.onreadystatechange = function() 
+        {
+            if (this.readyState == 4 && this.status == 200) 
+            {
+                alert("New Property Added");
+            }
+        };    
+        xhr.send(formdata);
 }
 
 var propertyID;
@@ -297,67 +302,73 @@ function propertyUpdate(){
     if (allFilled == 0){
         alert("Please Fill Required Inputs.");
 	}else{
-        setProperty(propertyID)
+        setProperty(propertyID);
         window.location.replace("../html/RentalAdmin.html");
     }
 }
 
 function setProperty(propertyKey)
 {    
-    var payload = {};
-    payload.PROPERTY_KEY = propertyKey;
     
-    payload.PROPERTY_PRICE = propertyPrice.value;
-    payload.PROPERTY_TYPE = propertyType.value;
-    payload.PROPERTY_STREET_ADDRESS1 = propertyAddress1.value;
-    payload.PROPERTY_STREET_ADDRESS2 = propertyAddress2.value;
-    payload.PROPERTY_CITY = propertyCity.value;
-    payload.PROPERTY_STATE = propertyState.value;
-    payload.PROPERTY_COUNTRY = propertyCountry.value;
-    payload.PROPERTY_ZIP = propertyZip.value;
+    if (allFilled == 0){
+        alert("Please Fill Required Inputs.");
+	}else{
+        var payload = {};
+        payload.PROPERTY_KEY = propertyKey;
+    
+        payload.PROPERTY_PRICE = propertyPrice.value;
+        payload.PROPERTY_TYPE = propertyType.value;
+        payload.PROPERTY_STREET_ADDRESS1 = propertyAddress1.value;
+        payload.PROPERTY_STREET_ADDRESS2 = propertyAddress2.value;
+        payload.PROPERTY_CITY = propertyCity.value;
+        payload.PROPERTY_STATE = propertyState.value;
+        payload.PROPERTY_COUNTRY = propertyCountry.value;
+        payload.PROPERTY_ZIP = propertyZip.value;
 
-    if(propertyAvailable.checked)
-        payload.PROPERTY_AVAILABLE = 1;
-    else
-        payload.PROPERTY_AVAILABLE = 0;
+        if(propertyAvailable.checked)
+            payload.PROPERTY_AVAILABLE = 1;
+        else
+            payload.PROPERTY_AVAILABLE = 0;
 
-    payload.PROPERTY_SQUARE_FEET = propertySqrFt.value;
-    payload.PROPERTY_BED = propertyBed.value;
-    payload.PROPERTY_BATH = propertyBath.value;
-    payload.PROPERTY_PARKING = propertyParking.value;
-    payload.PROPERTY_LEASE_MIN = propertyMinLease.value;
-    payload.PROPERTY_LEASE_MAX = propertyMaxLease.value;
-    payload.PROPERTY_NOTE = propertyNote.value;
+        payload.PROPERTY_SQUARE_FEET = propertySqrFt.value;
+        payload.PROPERTY_BED = propertyBed.value;
+        payload.PROPERTY_BATH = propertyBath.value;
+        payload.PROPERTY_PARKING = propertyParking.value;
+        payload.PROPERTY_LEASE_MIN = propertyMinLease.value;
+        payload.PROPERTY_LEASE_MAX = propertyMaxLease.value;
+        payload.PROPERTY_NOTE = propertyNote.value;
 
-    //Radio Values
-    if(petYes.checked)
-        payload.PROPERTY_PET_FRIENDLY = 1;   
-    else
-        payload.PROPERTY_PET_FRIENDLY = 0;
+        //Radio Values
+        if(petYes.checked)
+            payload.PROPERTY_PET_FRIENDLY = 1;   
+        else
+            payload.PROPERTY_PET_FRIENDLY = 0;
 
-    if(electricityYes.checked)
-        payload.PROPERTY_ELECTRICITY = 1;   
-    else
-        payload.PROPERTY_ELECTRICITY = 0;
+        if(electricityYes.checked)
+            payload.PROPERTY_ELECTRICITY = 1;   
+        else
+            payload.PROPERTY_ELECTRICITY = 0;
 
-    if(WSTYes.checked)
-        payload.PROPERTY_WATER_SEWAGE_TRASH = 1;   
-    else
-        payload.PROPERTY_WATER_SEWAGE_TRASH = 0;
+        if(WSTYes.checked)
+            payload.PROPERTY_WATER_SEWAGE_TRASH = 1;   
+        else
+            payload.PROPERTY_WATER_SEWAGE_TRASH = 0;
 
-    var xhr = new XMLHttpRequest();
-    xhr.open("POST", '../php/UpdateProperty.php', true);
+        var xhr = new XMLHttpRequest();
+        xhr.open("POST", '../php/UpdateProperty.php', true);
 
-    //Send the proper header information along with the request
-    xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+        //Send the proper header information along with the request
+        xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
 
-    xhr.onreadystatechange = function() { // Call a function when the state changes.
-        if (this.readyState === XMLHttpRequest.DONE && this.status === 200) 
-        {
-            alert("Successfully Updated");
-        }   
-    }    
-    xhr.send('PAYLOAD=' + JSON.stringify(payload));
+        xhr.onreadystatechange = function() { // Call a function when the state changes.
+            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) 
+            {
+                alert("Successfully Updated");
+            }   
+        }    
+        xhr.send('PAYLOAD=' + JSON.stringify(payload));
+        window.location.replace("../html/RentalAdmin.html");
+    }
 }
 
 function getPropertiesAdmin()
@@ -430,7 +441,7 @@ function getPropertiesAdmin()
             }
         }
     };
-    xmlhttp.open("GET", "../php/GetProperties.php", true);
+    xmlhttp.open("GET", "../php/GetAllProperties.php", true);
     xmlhttp.send();
 }
 
@@ -446,49 +457,159 @@ function getPropertiesUser()
             properties.forEach(createPropertyEntry);
 
             function createPropertyEntry(property, index)
-            {
-                //DEBUG since images don't work yet
-                property.images = [];
+            {                
+                var property_key = property['KEY'];
+                var property_name = property['NAME'].charAt(0).toUpperCase() + property['NAME'].substr(1).toLowerCase();
+                var property_type = property['TYPE'];
+                var property_address = property['STREET_ADDRESS1'];
+                var property_address2 = property['STREET_ADDRESS2'];
+                var city = property['CITY'];
+                var state = property['STATE'];
+                var country = property['COUNTRY'];
+                var zip = property['ZIP'];
+ 
+                var property_sqr_feet = property['SQUARE_FEET'];
+                var property_parking = property['PARKING'];
+                var property_bed = property['BED'];
+                var property_bath = property['BATH'];
+                var property_pet = property['PET_FRIENDLY'];
+                var property_electricity = property['ELECTRICITY'];
+                var property_WST = property['WATER_SEWAGE_TRASH'];
 
-                document.write('<table align="center" width="100%">');
-                document.write('<col width="25%">');
-                document.write('<col width="10%">');
-                document.write('<col width="65%">');
-                if(index > 0)
-                {
-                    document.write('<tr>');
-                    document.write('<td colspan="3"><hr class="line" style="width: 100%"/></td>');
-                    document.write('</tr>');
-                }
-                document.write('<tr>');
-                document.write('<td>  <div id="myCarousel" data-ride="carousel"> <div class="carousel-inner">');
-                for(var j =0; j < property.images.length; j++)
-                {
-                    if(j==0)
-                        document.write('<div class="item active">');
-                    else
-                        document.write('<div class="item">');
+                var imgSrc = property['IMAGE'];
+ 
+                tr_tag = document.createElement("tr");
+ 
+                img_td_tag = document.createElement("td");
+                img_tag = document.createElement("img");
+                if(imageSrc = '')
+                    img_tag.src = "..\\images\\property_icon.png";
+                else
+                    img_tag.src = imgSrc;
+                img_tag.width = "100";
+                img_tag.height = "100";
+                img_tag.align = "center";
+                
+                img_tag.onclick = function(){
+                    var xmlhttp = new XMLHttpRequest();
 
-                    document.write('<a href="'+ property.images[j]+'" target="_blank"><img src="' + houses[i].images[j] + '"></a>');
-                    document.write('</div>');
+                    xmlhttp.open("POST", "../php/GetPropertyImages.php", true);
+
+                    xmlhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+                    xmlhttp.onreadystatechange = function() 
+                    {
+                        if (this.readyState == 4 && this.status == 200) 
+                        {
+                            var imgs = JSON.parse(this.responseText);
+                            imgs.forEach(createImagesEntry);
+                            function createImagesEntry(img, index)
+                            {
+                            console.log(index);
+                                var imageSrc = img['PROPERTY_IMAGE']; 
+                                console.log(imageSrc);
+
+                                var property = document.getElementById("propertyImages");
+                                property.style.display = "block";
+
+                                div1 = document.createElement("DIV");
+                                if(index==0){
+                                    div1.classList.add("active");
+                                    div1.classList.add("item");
+                                }else{
+                                    div1.classList.add("item");
+                                }
+                                    imgTag = document.createElement("img");
+                                    imgTag.src = imageSrc;
+                                    imgTag.style.height="300px";
+                                    imgTag.style.width="300px";
+                                    div1.appendChild(imgTag);
+
+                                document.getElementById("parentDiv").appendChild(div1);
+
+                                var span = document.getElementsByClassName("close")[0];
+                                 span.onclick = function() {
+                                     property.style.display = "none";
+                                 };
+
+                                window.onclick = function(event) {
+                                    if (event.target == property) {
+                                        property.style.display = "none";
+                                    } 
+                                };
+                            };
+                            
+                         }
+                    }
+                    xmlhttp.send('PROPERTY_KEY=' + property_key);
+
                 }
-                document.write('</div>');
-                document.write('</div>');
-                document.write('</td>');
-                document.write('<td></td>');
-                document.write('<td valign="top"> <p class="title" style="font-size:30px;">' + property['NAME'] +  '</p>'
-                    +'</br><label class="title" style="font-size:20px;">Type - ' + property['TYPE'] 
-                    +'</br>Address - ' + property['STREET_ADDRESS1'] + ', '+ property['STREET_ADDRESS2'] + ', ' + property['CITY'] +', '+ property['STATE'] + ' - ' + property['ZIP']
-                    +'</br>Price - $' + property['PRICE'] +  ' per Month</label>'
-                    +'</br><button tag="more" type="button" id="'+ index +'" class="button" style="width: 80px;padding:2px;" onclick="displayPopup(this)">More</button>'
-                    +'</td>');
-                document.write('</tr>');
-                document.write('</table>');
+                img_td_tag.appendChild(img_tag); 
+                tr_tag.appendChild(img_td_tag); 
+ 
+                title_td_tag = document.createElement("td");
+ 
+                title_p_tag = document.createElement("p");
+                title_p_tag.class = "title";
+                title_p_tag.style.padding = "0px 0px";
+                title_p_tag.style.color = "#800000";
+                title_p_tag.innerHTML = property_name + " - " +property_type;
+                title_td_tag.appendChild(title_p_tag);
+ 
+                address_p_tag = document.createElement("p");
+                address_p_tag.class = "title";
+                address_p_tag.style.padding = "0px 0px";
+                address_p_tag.style.fontSize = "20px";
+                address_p_tag.innerHTML = property_address + ", " + property_address2 + ", " + city + ", "+ state + "-" + zip + ", " + country; 
+                title_td_tag.appendChild(address_p_tag);  
+ 
+                tr_tag.appendChild(title_td_tag); 
+ 
+                menu_td_tag = document.createElement("td");
+                menu_td_tag.padding = "10px";
+                menu_td_tag.align = "center";
+                more_button = document.createElement("button");
+                more_button.type = "button";
+                more_button.id="rentalPropertyUpdate" 
+                more_button.className = "button"
+                more_button.style="width: 100px;margin-top: 0px;margin-right: 5px;";
+                more_button.onclick = function(){
+                     var property = document.getElementById("propertyPopup");
+                     property.style.display = "block";
+ 
+                     document.getElementById("propTitle").innerHTML =  property_name;
+                     document.getElementById("sqft").innerHTML = "Total Area: " + property_sqr_feet + " Sq ft.";
+                     document.getElementById("parking").innerHTML = "Parking: " + property_parking;
+                     document.getElementById("bed").innerHTML = "Total Bed: " + property_bed;
+                     document.getElementById("bath").innerHTML = "Bath: " + property_bath;
+                     document.getElementById("pet").innerHTML = "Pets: " + (property_pet ? 'Friendly' : 'Not Friendly');
+                     document.getElementById("electricity").innerHTML = "Electric: " + (property_electricity ? 'yes' : 'no');
+                     document.getElementById("water").innerHTML = "Water, sewage, trash: " + (property_pet ? 'Provided' : 'Not provided');
+ 
+
+                     var span = document.getElementsByClassName("close")[0];
+ 
+                     span.onclick = function() {
+                         property.style.display = "none";
+                     };
+ 
+                     window.onclick = function(event) {
+                         if (event.target == property) {
+                             property.style.display = "none";
+                         } 
+                     };
+                };
+                more_button.innerHTML = "View";
+                menu_td_tag.appendChild(more_button); 
+                tr_tag.appendChild(menu_td_tag);
+ 
+                console.log(tr_tag);
+                document.getElementById("propertiesTable").appendChild(tr_tag);   
             };
         }
     }
 
-    xmlhttp.open("GET", "../php/GetProperties.php", true);
+    xmlhttp.open("GET", "../php/GetPropertiesUserRentals.php", true);
     xmlhttp.send();
 }
 

@@ -197,18 +197,22 @@
         <td class="text" valign="top">
             Extra Note
         </td>
-        <td><textarea rows="5" class="input" style="resize: none;overflow-y: auto;" tabindex="22" id="propertyNote"></textarea>
+        <td><textarea rows="5"  id="propertyNote" class="input" style="resize: none;overflow-y: auto;" tabindex="22"></textarea>
         </td>
        </tr>
        <tr>
         <td colspan="5" align="center">
             <button type="button" id="cancel" class="button" style="width: 120px;" tabindex="24" onClick="location.href='RentalAdmin.html'">Cancel</button>
-            <button type="button" id="update" class="button" style="width: 120px;" tabindex="23" onClick="propertyUpdate()">Update</button>
+            <button type="button" id="update" class="button" style="width: 120px;" tabindex="23" onClick="setProperty(<?php echo $_GET['ID']; ?>)">Update</button>
         </td>
        </tr>
      </table>
     <br/>
 </div>
-<script>getRentalUpdatePage()</script>
+<script> 
+        
+
+        getProperty(<?php echo $_GET['ID']; ?>); 
+</script>
 </body>
 </html>

@@ -6,7 +6,7 @@
 
     // There are three tables per property. Update each of them 
     $PROPERTY_KEY = json_decode($_GET['ID']);    
-    
+    echo $PROPERTY_KEY;
     
     $query = "DELETE FROM ANDREWSDREAMLLC.property WHERE PROPERTY_KEY = $PROPERTY_KEY";
 
