@@ -215,7 +215,7 @@ function newProperty()
     {
         if (this.readyState == 4 && this.status == 200) 
         {
-            alert("New Preprty Added");
+            alert("New Property Added");
         }
     };
     xhr.send('PAYLOAD=' + JSON.stringify(payload));
@@ -441,43 +441,94 @@ function getPropertiesUser()
 
             function createPropertyEntry(property, index)
             {
-                //DEBUG since images don't work yet
-                property.images = [];
+                
+                var property_key = property['KEY'];
+                var property_name = property['NAME'].charAt(0).toUpperCase() + property['NAME'].substr(1).toLowerCase();
+                var property_type = property['TYPE'];
+                var property_address = property['STREET_ADDRESS1'];
+                var property_address2 = property['STREET_ADDRESS2'];
+                var city = property['CITY'];
+                var state = property['STATE'];
+                var country = property['COUNTRY'];
+                var zip = property['ZIP'];
+ 
+                var property_sqr_feet = property['SQUARE_FEET'];
+                var property_parking = property['PARKING'];
+                var property_bed = property['BED'];
+                var property_bath = property['BATH'];
+                var property_pet = property['PET_FRIENDLY'];
+                var property_electricity = property['ELECTRICITY'];
+                var property_WST = property['WATER_SEWAGE_TRASH'];
 
-                document.write('<table align="center" width="100%">');
-                document.write('<col width="25%">');
-                document.write('<col width="10%">');
-                document.write('<col width="65%">');
-                if(index > 0)
-                {
-                    document.write('<tr>');
-                    document.write('<td colspan="3"><hr class="line" style="width: 100%"/></td>');
-                    document.write('</tr>');
-                }
-                document.write('<tr>');
-                document.write('<td>  <div id="myCarousel" data-ride="carousel"> <div class="carousel-inner">');
-                for(var j =0; j < property.images.length; j++)
-                {
-                    if(j==0)
-                        document.write('<div class="item active">');
-                    else
-                        document.write('<div class="item">');
+ 
+                tr_tag = document.createElement("tr");
+ 
+                img_td_tag = document.createElement("td");
+                img_tag = document.createElement("img");
+                img_tag.src = "..\\images\\property_icon.png";
+                img_tag.width = "100";
+                img_tag.height = "100";
+                img_tag.align = "center";
+                img_td_tag.appendChild(img_tag); 
+                tr_tag.appendChild(img_td_tag); 
+ 
+                title_td_tag = document.createElement("td");
+ 
+                title_p_tag = document.createElement("p");
+                title_p_tag.class = "title";
+                title_p_tag.style.padding = "0px 0px";
+                title_p_tag.style.color = "#800000";
+                title_p_tag.innerHTML = property_name + " - " +property_type;
+                title_td_tag.appendChild(title_p_tag);
+ 
+                address_p_tag = document.createElement("p");
+                address_p_tag.class = "title";
+                address_p_tag.style.padding = "0px 0px";
+                address_p_tag.style.fontSize = "20px";
+                address_p_tag.innerHTML = property_address + ", " + property_address2 + ", " + city + ", "+ state + "-" + zip + ", " + country; 
+                title_td_tag.appendChild(address_p_tag);  
+ 
+                tr_tag.appendChild(title_td_tag); 
+ 
+                menu_td_tag = document.createElement("td");
+                menu_td_tag.padding = "10px";
+                menu_td_tag.align = "center";
+                more_button = document.createElement("button");
+                more_button.type = "button";
+                more_button.id="rentalPropertyUpdate" 
+                more_button.className = "button"
+                more_button.style="width: 100px;margin-top: 0px;margin-right: 5px;";
+                more_button.onclick = function(){
+                     var property = document.getElementById("propertyPopup");
+                     property.style.display = "block";
+ 
+                     document.getElementById("propTitle").innerHTML =  property_name;
+                     document.getElementById("sqft").innerHTML = "Total Area: " + property_sqr_feet + " Sq ft.";
+                     document.getElementById("parking").innerHTML = "Parking: " + property_parking;
+                     document.getElementById("bed").innerHTML = "Total Bed: " + property_bed;
+                     document.getElementById("bath").innerHTML = "Bath: " + property_bath;
+                     document.getElementById("pet").innerHTML = "Pets: " + (property_pet ? 'Friendly' : 'Not Friendly');
+                     document.getElementById("electricity").innerHTML = "Electric: " + (property_electricity ? 'yes' : 'no');
+                     document.getElementById("water").innerHTML = "Water, sewage, trash: " + (property_pet ? 'Provided' : 'Not provided');
+ 
 
-                    document.write('<a href="'+ property.images[j]+'" target="_blank"><img src="' + houses[i].images[j] + '"></a>');
-                    document.write('</div>');
-                }
-                document.write('</div>');
-                document.write('</div>');
-                document.write('</td>');
-                document.write('<td></td>');
-                document.write('<td valign="top"> <p class="title" style="font-size:30px;">' + property['NAME'] +  '</p>'
-                    +'</br><label class="title" style="font-size:20px;">Type - ' + property['TYPE'] 
-                    +'</br>Address - ' + property['STREET_ADDRESS1'] + ', '+ property['STREET_ADDRESS2'] + ', ' + property['CITY'] +', '+ property['STATE'] + ' - ' + property['ZIP']
-                    +'</br>Price - $' + property['PRICE'] +  ' per Month</label>'
-                    +'</br><button tag="more" type="button" id="'+ index +'" class="button" style="width: 80px;padding:2px;" onclick="displayPopup(this)">More</button>'
-                    +'</td>');
-                document.write('</tr>');
-                document.write('</table>');
+                     var span = document.getElementsByClassName("close")[0];
+ 
+                     span.onclick = function() {
+                         property.style.display = "none";
+                     };
+ 
+                     window.onclick = function(event) {
+                         if (event.target == property) {
+                             property.style.display = "none";
+                         } 
+                     };
+                };
+                more_button.innerHTML = "View";
+                menu_td_tag.appendChild(more_button); 
+                tr_tag.appendChild(menu_td_tag);
+ 
+                document.getElementById("propertiesTable").appendChild(tr_tag);  
             };
         }
     }
